@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<navigation>
+		<button>
+			<link>homepage</link>
+			<label>Home</label>
+		</button>
+		<button>
+			<link>firstTier</link>
+			<label>First Tier</label>
+			<sub>
+				<button>
+					<link>firstTier,secondTierVarOne</link>
+					<label>Second Tier Var One</label>
+				</button>
+				<button>
+					<link>firstTier,secondTierVarTwo</link>
+					<label>Second Tier Var Two</label>
+				</button>
+			</sub>
+		</button>
+	</navigation>
+</data>

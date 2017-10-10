@@ -1,0 +1,127 @@
+8
+
+dir
+261
+https://svn.wunderman-review.com/svn/_interactive/thirdparty/as3/trunk/src/com/greensock
+https://svn.wunderman-review.com/svn/_interactive
+
+
+
+2009-12-28T16:19:17.211870Z
+129
+epsteinb
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b6b4794c-6378-bb41-bb06-88728c6e73ad
+
+OverwriteManager.as
+file
+
+
+
+
+2010-03-08T18:14:21.000000Z
+529b5f46d2d194e7c832ab474db119a3
+2009-12-18T07:27:44.400075Z
+105
+smitht
+
+TimelineLite.as
+file
+
+
+
+
+2010-03-08T18:14:22.000000Z
+b705bfb8e07ba72294516433126cedc6
+2009-12-18T07:27:44.400075Z
+105
+smitht
+
+TimelineMax.as
+file
+
+
+
+
+2010-03-08T18:14:23.000000Z
+eca080d60ea775de465d5dfc949af987
+2009-12-18T07:27:44.400075Z
+105
+smitht
+
+TweenAlign.as
+file
+
+
+
+
+2010-03-08T18:14:20.000000Z
+7088e891d45795e542c68c6b85b4f6a8
+2009-12-18T07:27:44.400075Z
+105
+smitht
+
+TweenLite.as
+file
+
+
+
+
+2010-03-08T18:14:21.000000Z
+102fce05ee27666f3b3ff4cf711629d6
+2009-12-18T07:27:44.400075Z
+105
+smitht
+
+TweenMax.as
+file
+
+
+
+
+2010-03-08T18:14:23.000000Z
+48a6290ad3a8760e63112b62f451d704
+2009-12-18T07:27:44.400075Z
+105
+smitht
+
+TweenNano.as
+file
+
+
+
+
+2010-03-08T18:14:20.000000Z
+3f8c41478c5bae4f6ad6cee336f132d5
+2009-12-18T07:27:44.400075Z
+105
+smitht
+
+core
+dir
+
+data
+dir
+
+easing
+dir
+
+events
+dir
+
+plugins
+dir
+

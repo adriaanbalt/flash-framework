@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/util
+END
+FastRectangleTools.as
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/util/FastRectangleTools.as
+END
+ClassificationUtil.as
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/util/ClassificationUtil.as
+END
+InterpolationUtil.as
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/util/InterpolationUtil.as
+END
+Intersection.as
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/util/Intersection.as
+END
+TriangleUtil.as
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/util/TriangleUtil.as
+END

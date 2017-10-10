@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Distribution</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_layout_Distribution"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instanceproperties" accesskey="l">Instance <span class="accessKey">p</span>roperties</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>Distribution</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_layout.html">org.casalib.layout</a></td></tr><tr><th align="left">Inherits from:</th><td><a class="className" href="org_casalib_display_CasaSprite.html">CasaSprite</a> &lt; Sprite</td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">09/06/09</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Aaron Clinger, Jon Adams</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.layout.Distribution</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Sunday, 06 September 2009, 09:12:17</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">/*
+    CASA Lib for ActionScript 3.0
+    Copyright (c) 2009, Aaron Clinger &amp; Contributors of CASA Lib
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    - Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    
+    - Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    
+    - Neither the name of the CASA Lib nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.casalib.layout {
+    import flash.display.DisplayObject;
+    import org.casalib.display.CasaSprite;
+    
+    /**
+        Creates the mechanism to distribute DisplayObjects to a vertical or horzontal grid of columns and rows.
+        
+        @author Aaron Clinger
+        @author Jon Adams
+        @version 09/06/09
+        @example
+            &lt;code>
+                package {
+                    import org.casalib.display.CasaMovieClip;
+                    import org.casalib.display.CasaSprite;
+                    import org.casalib.layout.Distribution;
+                    
+                    
+                    public class MyExample extends CasaMovieClip {
+                        public var dist:Distribution;
+                        
+                        public function MyExample() {
+                            super();
+                            
+                            this.dist = new Distribution(315);
+                            this.dist.setMargin(0, 5, 5, 0);
+                            
+                            this.addChild(this.dist);
+                            
+                            var l:uint = 10;
+                            var s:CasaSprite;
+                            
+                            while (l--) {
+                                s = new CasaSprite();
+                                s.graphics.beginFill(0xFF00FF);
+                                s.graphics.drawRect(0, 0, 100, 100);
+                                s.graphics.endFill();
+                                
+                                this.dist.addChild(s);
+                            }
+                            
+                            this.dist.position();
+                        }
+                    }
+                }
+            &lt;/code>
+    */
+    public class Distribution extends CasaSprite {
+        protected var _marginTop:Number;
+        protected var _marginRight:Number;
+        protected var _marginBottom:Number;
+        protected var _marginLeft:Number;
+        protected var _size:Number;
+        protected var _isSnap:Boolean;
+        protected var _isVert:Boolean;
+        
+        
+        /**
+            Creates a Distribution.
+            
+            @param size: The maximum width or height of the distribution. If &lt;code>isVertical&lt;/code> argument is &lt;code>false&lt;/code> you are setting the width of the distribution before wrapping, if &lt;code>true&lt;/code> you're setting the height before wrapping.
+            @param isVertical: Indicates to position children left-to-right top-to-bottom &lt;code>false&lt;/code>, or to position children top-to-bottom left-to-right &lt;code>true&lt;/code>.
+            @param snapToPixel: Force the position of all children to whole pixels &lt;code>true&lt;/code>, or to let items be positioned on sub-pixels &lt;code>false&lt;/code>.
+        */
+        public function Distribution(size:Number = Number.POSITIVE_INFINITY, isVertical:Boolean = false, snapToPixel:Boolean = true) {
+            super();
+            
+            this.size          = size;
+            this.vertical      = isVertical;
+            this._isSnap       = snapToPixel;
+            this._marginTop    = 0;
+            this._marginRight  = 0;
+            this._marginBottom = 0;
+            this._marginLeft   = 0;
+        }
+        
+        /**
+            Defines the spacing between children in the distribution.
+            
+            @param top: Sets the top spacing of the children.
+            @param right: Sets the right spacing of the children.
+            @param bottom: Sets the bottom spacing of the children.
+            @param left: Sets the left spacing of the children.
+        */
+        public function setMargin(top:Number = 0, right:Number = 0, bottom:Number = 0, left:Number = 0):void {
+            this.marginTop    = top;
+            this.marginRight  = right;
+            this.marginBottom = bottom;
+            this.marginLeft   = left;
+        }
+        
+        /**
+            The top spacing of the children.
+        */
+        public function set marginTop(top:Number):void {
+            this._marginTop = top;
+        }
+        
+        public function get marginTop():Number {
+            return this._marginTop;
+        }
+        
+        /**
+            The right spacing of the children.
+        */
+        public function set marginRight(right:Number):void {
+            this._marginRight = right;
+        }
+        
+        public function get marginRight():Number {
+            return this._marginRight;
+        }
+        
+        /**
+            The bottom spacing of the children.
+        */
+        public function set marginBottom(bottom:Number):void {
+            this._marginBottom = bottom;
+        }
+        
+        public function get marginBottom():Number {
+            return this._marginBottom;
+        }
+        
+        /**
+            The left spacing of the children.
+        */
+        public function set marginLeft(left:Number):void {
+            this._marginLeft = left;
+        }
+        
+        public function get marginLeft():Number {
+            return this._marginLeft;
+        }
+        
+        /**
+            The maximum width or height of the distribution. If {@link #vertical} is &lt;code>false&lt;/code> you are setting the width of the distribution before wrapping, if &lt;code>true&lt;/code> you're setting the height before wrapping.
+        */
+        public function set size(s:Number):void {
+            this._size = s;
+        }
+        
+        public function get size():Number {
+            return this._size;
+        }
+        
+        /**
+            Indicates to position children left-to-right top-to-bottom &lt;code>false&lt;/code>, or to position children top-to-bottom left-to-right &lt;code>true&lt;/code>.
+        */
+        public function set vertical(isVertical:Boolean):void {
+            this._isVert = isVertical;
+        }
+        
+        public function get vertical():Boolean {
+            return this._isVert;
+        }
+        
+        /**
+            Arranges the children of the Distribution.
+        */
+        public function position():void {
+            var i:int          = -1;
+            var column:Number  = 0;
+            var row:Number     = 0;
+            var largest:Number = 0;
+            var item:DisplayObject;
+            var xPo:Number;
+            var yPo:Number;
+            var w:Number;
+            var h:Number;
+            
+            while (++i &lt; this.numChildren) {
+                item = this.getChildAt(i);
+                
+                w = item.width  + this._marginLeft + this._marginRight;
+                h = item.height + this._marginTop + this._marginBottom;
+                
+                if (!this.vertical) {
+                    column += w;
+                    
+                    if (column > this.size) {
+                        row += (largest == 0) ? row : largest;
+                        
+                        largest = 0;
+                        column  = w;
+                    }
+                    
+                    if (h > largest)
+                        largest = h;
+                    
+                    xPo = column - item.width - this._marginRight;
+                    yPo = row + this._marginTop;
+                } else {
+                    row += h;
+                    
+                    if (row > this.size) {
+                        column += (largest == 0) ? column : largest;
+                        
+                        largest = 0;
+                        row     = h;
+                    }
+                    
+                    if (w > largest)
+                        largest = w;
+                    
+                    xPo = column + this._marginLeft;
+                    yPo = row - item.height - this._marginBottom;
+                }
+                
+                this._positionItem(item, this._isSnap ? Math.round(xPo) : xPo, this._isSnap ? Math.round(yPo) : yPo);
+            }
+        }
+        
+        protected function _positionItem(target:DisplayObject, xPo:Number, yPo:Number):void {
+            target.x = xPo;
+            target.y = yPo;
+        }
+    }
+}
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">Creates the mechanism to distribute DisplayObjects to a vertical or horzontal grid of columns and rows.</span><div class="classFields"><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Example:</span><div class="item"><ul><li> <pre>
+package {
+    <span class="codeKeyword">import</span> org.casalib.display.CasaMovieClip;
+    <span class="codeKeyword">import</span> org.casalib.display.CasaSprite;
+    <span class="codeKeyword">import</span> org.casalib.layout.Distribution;
+
+
+    <span class="codeKeyword">public</span> <span class="codeKeyword">class</span> MyExample <span class="codeKeyword">extends</span> CasaMovieClip {
+        <span class="codeKeyword">public</span> <span class="codeKeyword">var</span> dist:Distribution;
+
+        <span class="codeKeyword">public</span> <span class="codeKeyword">function</span> MyExample() {
+            <span class="codeIdentifier">super</span>();
+
+            <span class="codeIdentifier">this</span>.dist = <span class="codeKeyword">new</span> Distribution(<span class="codeNumber">315</span>);
+            <span class="codeIdentifier">this</span>.dist.setMargin(<span class="codeNumber">0</span>, <span class="codeNumber">5</span>, <span class="codeNumber">5</span>, <span class="codeNumber">0</span>);
+
+            <span class="codeIdentifier">this</span>.addChild(<span class="codeIdentifier">this</span>.dist);
+
+            <span class="codeKeyword">var</span> l:uint = <span class="codeNumber">10</span>;
+            <span class="codeKeyword">var</span> s:CasaSprite;
+
+            <span class="codeKeyword">while</span> (l--) {
+                s = <span class="codeKeyword">new</span> CasaSprite();
+                s.graphics<span class="codeIdentifier">.beginFill</span>(0xFF00FF);
+                s.graphics.drawRect(<span class="codeNumber">0</span>, <span class="codeNumber">0</span>, <span class="codeNumber">100</span>, <span class="codeNumber">100</span>);
+                s.graphics<span class="codeIdentifier">.endFill</span>();
+
+                <span class="codeIdentifier">this</span>.dist.addChild(s);
+            }
+
+            <span class="codeIdentifier">this</span>.dist<span class="codeIdentifier">.position</span>();
+        }
+    }
+}</pre> </li></ul></div></div></div></div></div></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#Distribution">Distribution</a><span class="typeInfo"> (size:Number = Number.POSITIVE_INFINITY, isVertical:Boolean = false, snapToPixel:Boolean = true)</span><ul class="summary"><li>Creates a Distribution.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Instance properties</span><ul class="sortable" id="sortul2"><li class="sortli listnum1"><a href="#marginTop">marginTop</a><span class="typeInfo"> (top:Number) : Number</span><ul class="summary"><li>The top spacing of the children.</li></ul></li><li class="sortli listnum2"><a href="#marginRight">marginRight</a><span class="typeInfo"> (right:Number) : Number</span><ul class="summary"><li>The right spacing of the children.</li></ul></li><li class="sortli listnum3"><a href="#marginBottom">marginBottom</a><span class="typeInfo"> (bottom:Number) : Number</span><ul class="summary"><li>The bottom spacing of the children.</li></ul></li><li class="sortli listnum4"><a href="#marginLeft">marginLeft</a><span class="typeInfo"> (left:Number) : Number</span><ul class="summary"><li>The left spacing of the children.</li></ul></li><li class="sortli listnum5"><a href="#size">size</a><span class="typeInfo"> (s:Number) : Number</span><ul class="summary"><li>The maximum width or height of the distribution.</li></ul></li><li class="sortli listnum6"><a href="#vertical">vertical</a><span class="typeInfo"> (isVertical:Boolean) : Boolean</span><ul class="summary"><li>Indicates to position children left-to-right top-to-bottom <span class="codeIdentifier">false</span>, or to position children top-to-bottom left-to-right <span class="codeIdentifier">true</span>.</li></ul></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_display_CasaSprite.html">CasaSprite</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_display_CasaSprite.html#_isDestroyed">_isDestroyed</a>  <a class="private" href="org_casalib_display_CasaSprite.html#_listenerManager">_listenerManager</a>  <a href="org_casalib_display_CasaSprite.html#destroyed">destroyed</a>  <a href="org_casalib_display_CasaSprite.html#stage">stage</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#setMargin">setMargin</a><span class="typeInfo"> (top:Number = 0, right:Number = 0, bottom:Number = 0, left:Number = 0) : void</span><ul class="summary"><li>Defines the spacing between children in the distribution.</li></ul></li><li class="sortli listnum2"><a href="#position">position</a><span class="typeInfo">  : void</span><ul class="summary"><li>Arranges the children of the Distribution.</li></ul></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_display_CasaSprite.html">CasaSprite</a></span></span><div class="item inheritedList"><a href="org_casalib_display_CasaSprite.html#addEventListener">addEventListener</a>  <a href="org_casalib_display_CasaSprite.html#destroy">destroy</a>  <a href="org_casalib_display_CasaSprite.html#dispatchEvent">dispatchEvent</a>  <a href="org_casalib_display_CasaSprite.html#removeChildren">removeChildren</a>  <a href="org_casalib_display_CasaSprite.html#removeChildrenAndDestroy">removeChildrenAndDestroy</a>  <a href="org_casalib_display_CasaSprite.html#removeEventListener">removeEventListener</a>  <a href="org_casalib_display_CasaSprite.html#removeEventListeners">removeEventListeners</a>  <a href="org_casalib_display_CasaSprite.html#removeEventsForListener">removeEventsForListener</a>  <a href="org_casalib_display_CasaSprite.html#removeEventsForType">removeEventsForType</a></div></div></div></div></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="Distribution"><h3>Distribution</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>Distribution</b> (
+
+
+</div><div class="code">size:Number = Number.POSITIVE_INFINITY,
+isVertical:Boolean = false,
+snapToPixel:Boolean = true)</div><br class="clear" /></div></div><div class="description"> Creates a Distribution. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">size       <span class="itemSeparator">:</span></div><div>The maximum width or height of the distribution. If <code>isVertical</code> argument is <code><span class="codeIdentifier">false</span></code> you are setting the width of the distribution before wrapping, if <code><span class="codeIdentifier">true</span></code> you're setting the height before wrapping.</div></div><div class="item"><div class="floatbox code colorizedCode">isVertical <span class="itemSeparator">:</span></div><div>Indicates to position children left-to-right top-to-bottom <code><span class="codeIdentifier">false</span></code>, or to position children top-to-bottom left-to-right <code><span class="codeIdentifier">true</span></code>.</div></div><div class="item"><div class="floatbox code colorizedCode">snapToPixel<span class="itemSeparator">:</span></div><div>Force the position of all children to whole pixels <code><span class="codeIdentifier">true</span></code>, or to let items be positioned on sub-pixels <code><span class="codeIdentifier">false</span></code>.</div></div></div></div></div></div></div><div class="memberSection"><h2 id="Instanceproperties">Instance properties</h2><div class="member" id="marginBottom"><h3>marginBottom</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>marginBottom</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The bottom spacing of the children. </div></div><div class="member" id="marginLeft"><h3>marginLeft</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>marginLeft</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The left spacing of the children. </div></div><div class="member" id="marginRight"><h3>marginRight</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>marginRight</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The right spacing of the children. </div></div><div class="member" id="marginTop"><h3>marginTop</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>marginTop</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The top spacing of the children. </div></div><div class="member" id="size"><h3>size</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>size</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The maximum width or height of the distribution. If <a href="org_casalib_layout_Distribution.html#vertical">vertical</a> is <code><span class="codeIdentifier">false</span></code> you are setting the width of the distribution before wrapping, if <code><span class="codeIdentifier">true</span></code> you're setting the height before wrapping. </div></div><div class="member" id="vertical"><h3>vertical</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>vertical</b>:Boolean
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> Indicates to position children left-to-right top-to-bottom <code><span class="codeIdentifier">false</span></code>, or to position children top-to-bottom left-to-right <code><span class="codeIdentifier">true</span></code>. </div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="position"><h3>position</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>position</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="description"> Arranges the children of the Distribution. </div></div><div class="member" id="setMargin"><h3>setMargin</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>setMargin</b> (
+
+
+
+</div><div class="code">top:Number = 0,
+right:Number = 0,
+bottom:Number = 0,
+left:Number = 0) : void</div><br class="clear" /></div></div><div class="description"> Defines the spacing between children in the distribution. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">top   <span class="itemSeparator">:</span></div><div>Sets the top spacing of the children.</div></div><div class="item"><div class="floatbox code colorizedCode">right <span class="itemSeparator">:</span></div><div>Sets the right spacing of the children.</div></div><div class="item"><div class="floatbox code colorizedCode">bottom<span class="itemSeparator">:</span></div><div>Sets the bottom spacing of the children.</div></div><div class="item"><div class="floatbox code colorizedCode">left  <span class="itemSeparator">:</span></div><div>Sets the left spacing of the children.</div></div></div></div></div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

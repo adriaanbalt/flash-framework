@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>SequenceEvent</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_events_SequenceEvent"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instanceproperties" accesskey="l">Instance <span class="accessKey">p</span>roperties</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>SequenceEvent</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_events.html">org.casalib.events</a></td></tr><tr><th align="left">Inherits from:</th><td>Event</td></tr><tr><th align="left">Dispatched by:</th><td><ul><li><a class="className" href="org_casalib_time_Sequence.html">Sequence</a></li></ul></td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">10/27/08</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Jon Adams, Aaron Clinger</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.events.SequenceEvent</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Monday, 01 December 2008, 11:56:32</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">package org.casalib.events {
+    import flash.events.Event;
+    
+    
+    /**
+        An event dispatched from {@link Sequence}.
+        
+        @author Jon Adams
+        @author Aaron Clinger
+        @version 10/27/08
+    */
+    public class SequenceEvent extends Event {
+        public static const COMPLETE:String = 'complete';
+        public static const RESUME:String   = 'resume';
+        public static const START:String    = 'start';
+        public static const STOP:String     = 'stop';
+        public static const LOOP:String     = 'loop';
+        protected var _loops:uint;
+        
+        
+        /**
+            Creates a new SequenceEvent.
+            
+            @param type: The type of event.
+            @param bubbles: Determines whether the Event object participates in the bubbling stage of the event flow.
+            @param cancelable: Determines whether the Event object can be canceled.
+        */
+        public function SequenceEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
+            super(type, bubbles, cancelable);
+        }
+        
+        /**
+            The number of times the sequence has run.
+        */
+        public function get loops():uint {
+            return this._loops;
+        }
+        
+        public function set loops(loops:uint):void {
+            this._loops = loops;
+        }
+        
+        /**
+            @return A string containing all the properties of the event.
+        */
+        override public function toString():String {
+            return formatToString('SequenceEvent', 'type', 'bubbles', 'cancelable', 'loops');
+        }
+        
+        /**
+            @return Duplicates an instance of the event.
+        */
+        override public function clone():Event {
+            var e:SequenceEvent = new SequenceEvent(this.type, this.bubbles, this.cancelable);
+            e.loops = this.loops;
+            
+            return e;
+        }
+    }
+}
+
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">An event dispatched from <a class="className" href="org_casalib_time_Sequence.html">Sequence</a>.</span></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#SequenceEvent">SequenceEvent</a><span class="typeInfo"> (type:String, bubbles:Boolean = false, cancelable:Boolean = false)</span><ul class="summary"><li>Creates a new SequenceEvent.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Constants</span><ul class="sortable" id="sortul2"><li class="sortli listnum1"><a href="#COMPLETE">COMPLETE</a><span class="typeInfo">  : String</span></li><li class="sortli listnum2"><a href="#RESUME">RESUME</a><span class="typeInfo">  : String</span></li><li class="sortli listnum3"><a href="#START">START</a><span class="typeInfo">  : String</span></li><li class="sortli listnum4"><a href="#STOP">STOP</a><span class="typeInfo">  : String</span></li><li class="sortli listnum5"><a href="#LOOP">LOOP</a><span class="typeInfo">  : String</span></li></ul></div><div class="memberSummaryPart"><span class="title">Instance properties</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#loops">loops</a><span class="typeInfo">  : uint</span><ul class="summary"><li>The number of times the sequence has run.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul4"><li class="sortli listnum1"><a href="#toString">toString</a><span class="typeInfo">  : String</span></li><li class="sortli listnum2"><a href="#clone">clone</a><span class="typeInfo">  : Event</span></li></ul></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="SequenceEvent"><h3>SequenceEvent</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>SequenceEvent</b> (
+
+
+</div><div class="code">type:String,
+bubbles:Boolean = false,
+cancelable:Boolean = false)</div><br class="clear" /></div></div><div class="description"> Creates a new SequenceEvent. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">type      <span class="itemSeparator">:</span></div><div>The type of event.</div></div><div class="item"><div class="floatbox code colorizedCode">bubbles   <span class="itemSeparator">:</span></div><div>Determines whether the Event object participates in the bubbling stage of the event flow.</div></div><div class="item"><div class="floatbox code colorizedCode">cancelable<span class="itemSeparator">:</span></div><div>Determines whether the Event object can be canceled.</div></div></div></div></div></div></div><div class="memberSection"><h2 id="Constants">Constants</h2><div class="member" id="COMPLETE"><h3>COMPLETE</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static const</span> <b>COMPLETE</b>:String = <span class="codeString">'complete'</span>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div></div><div class="member" id="LOOP"><h3>LOOP</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static const</span> <b>LOOP</b>:String = <span class="codeString">'loop'</span>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div></div><div class="member" id="RESUME"><h3>RESUME</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static const</span> <b>RESUME</b>:String = <span class="codeString">'resume'</span>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div></div><div class="member" id="START"><h3>START</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static const</span> <b>START</b>:String = <span class="codeString">'start'</span>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div></div><div class="member" id="STOP"><h3>STOP</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static const</span> <b>STOP</b>:String = <span class="codeString">'stop'</span>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div></div></div><div class="memberSection"><h2 id="Instanceproperties">Instance properties</h2><div class="member" id="loops"><h3>loops</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>loops</b>:uint
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The number of times the sequence has run. </div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="clone"><h3>clone</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>clone</b> (
+</div><div class="code">) : Event</div><br class="clear" /></div></div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> Duplicates an instance of the event. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <span class="doesNotExist"> Event.clone</span> </li></ul></div></div></div></div></div><div class="member" id="toString"><h3>toString</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>toString</b> (
+</div><div class="code">) : String</div><br class="clear" /></div></div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> A string containing all the properties of the event. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <span class="doesNotExist"> Event.toString</span> </li></ul></div></div></div></div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>LoadItem</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_load_LoadItem"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instanceproperties" accesskey="l">Instance <span class="accessKey">p</span>roperties</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>LoadItem</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_load.html">org.casalib.load</a></td></tr><tr><th align="left">Inherits from:</th><td><a class="className" href="org_casalib_process_Process.html">Process</a> &lt; <a class="className" href="org_casalib_events_RemovableEventDispatcher.html">RemovableEventDispatcher</a> &lt; EventDispatcher</td></tr><tr><th align="left">Known subclasses:</th><td><ul><li><a class="className" href="org_casalib_load_AudioLoad.html">AudioLoad</a></li><li><a class="className" href="org_casalib_load_CasaLoader.html">CasaLoader</a></li><li><a class="className" href="org_casalib_load_DataLoad.html">DataLoad</a></li><li><a class="className" href="org_casalib_load_VideoLoad.html">VideoLoad</a></li></ul></td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">05/30/09</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Aaron Clinger</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.load.LoadItem</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Sunday, 06 September 2009, 09:33:23</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">/*
+    CASA Lib for ActionScript 3.0
+    Copyright (c) 2009, Aaron Clinger &amp; Contributors of CASA Lib
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    - Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    
+    - Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    
+    - Neither the name of the CASA Lib nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.casalib.load {
+    import flash.events.Event;
+    import flash.events.HTTPStatusEvent;
+    import flash.events.IEventDispatcher;
+    import flash.events.IOErrorEvent;
+    import flash.events.ProgressEvent;
+    import flash.net.URLRequest;
+    import flash.utils.getTimer;
+    import org.casalib.errors.ArguementTypeError;
+    import org.casalib.events.LoadEvent;
+    import org.casalib.events.RetryEvent;
+    import org.casalib.math.Percent;
+    import org.casalib.process.Process;
+    import org.casalib.util.LoadUtil;
+    import org.casalib.util.StringUtil;
+    
+    
+    [Event(name="complete", type="org.casalib.events.LoadEvent")]
+    [Event(name="ioError", type="flash.events.IOErrorEvent")]
+    [Event(name="open", type="flash.events.Event")]
+    [Event(name="progress", type="org.casalib.events.LoadEvent")]
+    [Event(name="retry", type="org.casalib.events.RetryEvent")]
+    [Event(name="start", type="org.casalib.events.LoadEvent")]
+    [Event(name="stop", type="org.casalib.events.LoadEvent")]
+    
+    /**
+        Base class used by load classes. LoadItem is not designed to be used on its own and needs to be extended to function.
+        
+        @author Aaron Clinger
+        @version 05/30/09
+    */
+    public class LoadItem extends Process {
+        protected var _attempts:uint;
+        protected var _loaded:Boolean;
+        protected var _preventCache:Boolean;
+        protected var _retries:uint;
+        protected var _dispatcher:IEventDispatcher;
+        protected var _Bps:int;
+        protected var _time:uint;
+        protected var _latency:uint;
+        protected var _httpStatus:uint;
+        protected var _loadItem:*;
+        protected var _progress:Percent;
+        protected var _request:URLRequest;
+        protected var _startTime:uint;
+        
+        
+        /**
+            Defines the load object and file location.
+            
+            @param load: The load object.
+            @param request: A String or an URLRequest reference to the file you wish to load.
+            @throws ArguementTypeError if you pass a value type other than a String or URLRequest to parameter &lt;code>request&lt;/code>.
+        */
+        public function LoadItem(load:*, request:*) {
+            super();
+            
+            this._createRequest(request);
+            
+            this._loadItem = load;
+            this._retries  = 2;
+            this._Bps      = -1;
+            this._progress = new Percent();
+        }
+        
+        /**
+            Begins the loading process.
+            
+            @sends LoadEvent#START - Dispatched when a load is started.
+        */
+        override public function start():void {
+            if (this.loading)
+                return;
+            
+            super.start();
+            
+            this._loaded    = false;
+            this._startTime = getTimer();
+            this._attempts  = 0;
+            this._progress  = new Percent();
+            this._Bps       = -1;
+            this._time      = 0;
+            
+            if (this._preventCache) {
+                var cache:String = 'casaCache=' + int(1000 * Math.random());
+                
+                this._request.url = (this._request.url.indexOf('?') == -1) ? this._request.url + '?' + cache : this._request.url + '&amp;' + cache;
+            }
+            
+            this._load();
+            
+            this.dispatchEvent(this._createDefinedLoadEvent(LoadEvent.START));
+        }
+        
+        /**
+            Cancels the currently loading file from completing.
+            
+            @sends LoadEvent#STOP - Dispatched if the load is stopped during the loading process.
+        */
+        override public function stop():void {
+            if (!this.loading || this.loaded)
+                return;
+            
+            if (this.bytesTotal == this.bytesLoaded &amp;&amp; this.bytesLoaded > 0)
+                return;
+            
+            super.stop();
+            
+            this._loadItem.close();
+            this.dispatchEvent(this._createDefinedLoadEvent(LoadEvent.STOP));
+        }
+        
+        /**
+            Specifies if a random value name/value pair should be appended to the query string to help prevent caching &lt;code>true&lt;/code>, or not append &lt;code>false&lt;/code>; defaults to &lt;code>false&lt;/code>.
+        */
+        public function get preventCache():Boolean {
+            return this._preventCache;
+        }
+        
+        public function set preventCache(cache:Boolean):void {
+            this._preventCache = cache;
+        }
+        
+        /**
+            The total number of bytes of the requested file.
+        */
+        public function get bytesTotal():Number {
+            return (this._loadItem.bytesTotal == 0 &amp;&amp; this.bytesLoaded != 0) ? Number.POSITIVE_INFINITY : this._loadItem.bytesTotal;
+        }
+        
+        /**
+            The number of bytes loaded of the requested file.
+        */
+        public function get bytesLoaded():uint {
+            return this._loadItem.bytesLoaded;
+        }
+        
+        /**
+            The percent that the requested file has loaded.
+        */
+        public function get progress():Percent {
+            return this._progress.clone();
+        }
+        
+        /**
+            The number of additional times the file has attempted to load after {@link #start start} was called.
+        */
+        public function get attempts():uint {
+            return this._attempts;
+        }
+        
+        /**
+            The number of additional load retries the class should attempt before failing; defaults to &lt;code>2&lt;/code> additional retries / &lt;code>3&lt;/code> total load attempts.
+        */
+        public function get retries():uint {
+            return this._retries;
+        }
+        
+        public function set retries(amount:uint):void {
+            this._retries = amount;
+        }
+        
+        /**
+            The URLRequest reference to the requested file.
+        */
+        public function get urlRequest():URLRequest {
+            return this._request;
+        }
+        
+        /**
+            The URL of the requested file.
+        */
+        public function get url():String {
+            return this.urlRequest.url;
+        }
+        
+        /**
+            Determines if the requested file is loading &lt;code>true&lt;/code>, or if it isn't currently loading &lt;code>false&lt;/code>.
+        */
+        public function get loading():Boolean {
+            return this.running;
+        }
+        
+        /**
+            Determines if the requested file has loaded &lt;code>true&lt;/code>, or hasn't finished loading &lt;code>false&lt;/code>.
+        */
+        public function get loaded():Boolean {
+            return this._loaded;
+        }
+        
+        /**
+            The current download speed of the requested file in bytes per second.
+        */
+        public function get Bps():int {
+            return this._Bps;
+        }
+        
+        /**
+            The current time duration in milliseconds the load has taken.
+        */
+        public function get time():uint {
+            return this._time;
+        }
+        
+        /**
+            The time in milliseconds that the server took to respond.
+        */
+        public function get latency():uint {
+            return this._latency;
+        }
+        
+        /**
+            The HTTP status code returned by the server; or &lt;code>0&lt;/code> if no status has/can been received or the load is a stream.
+        */
+        public function get httpStatus():uint {
+            return this._httpStatus;
+        }
+        
+        override public function destroy():void {
+            this._dispatcher.removeEventListener(Event.COMPLETE, this._onComplete);
+            this._dispatcher.removeEventListener(Event.OPEN, this._onOpen);
+            this._dispatcher.removeEventListener(IOErrorEvent.IO_ERROR, this._onLoadError);
+            this._dispatcher.removeEventListener(ProgressEvent.PROGRESS, this._onProgress);
+            
+            super.destroy();
+        }
+        
+        protected function _initListeners(dispatcher:IEventDispatcher):void {
+            this._dispatcher = dispatcher;
+            
+            this._dispatcher.addEventListener(Event.COMPLETE, this._onComplete, false, 0, true);
+            this._dispatcher.addEventListener(Event.OPEN, this._onOpen, false, 0, true);
+            this._dispatcher.addEventListener(IOErrorEvent.IO_ERROR, this._onLoadError, false, 0, true);
+            this._dispatcher.addEventListener(ProgressEvent.PROGRESS, this._onProgress, false, 0, true);
+        }
+        
+        protected function _load():void {
+            this._loadItem.load(this._request);
+        }
+        
+        protected function _createRequest(request:*):void {
+            if (request is String) {
+                if (StringUtil.removeWhitespace(request) == '')
+                    throw new Error('Cannot load an empty reference/String');
+                
+                request = new URLRequest(request);
+            } else if (!(request is URLRequest))
+                throw new ArguementTypeError('request');
+            
+            this._request = request;
+        }
+        
+        /**
+            @sends RetryEvent#RETRY - Dispatched if the download attempt failed and the class is going to attempt to download the file again.
+            @sends IOErrorEvent#IO_ERROR - Dispatched if requested file cannot be loaded and the download terminates.
+        */
+        protected function _onLoadError(error:Event):void {
+            if (++this._attempts &lt;= this._retries) {
+                var retry:RetryEvent = new RetryEvent(RetryEvent.RETRY);
+                retry.attempts       = this._attempts;
+                
+                this.dispatchEvent(retry);
+                
+                this._load();
+            } else {
+                super._complete();
+                
+                this.dispatchEvent(error);
+            }
+        }
+        
+        /**
+            @sends Event#OPEN - Dispatched when a load operation starts.
+        */
+        protected function _onOpen(e:Event):void {
+            this._latency = getTimer() - this._startTime;
+            
+            this.dispatchEvent(e);
+        }
+        
+        protected function _onHttpStatus(e:HTTPStatusEvent):void {
+            this._httpStatus = e.status;
+            
+            this.dispatchEvent(e);
+        }
+        
+        protected function _onProgress(progress:ProgressEvent):void {
+            this._calculateLoadProgress();
+        }
+        
+        /**
+            @sends LoadEvent#PROGRESS - Dispatched as data is received during the download process.
+        */
+        protected function _calculateLoadProgress():void {
+            var currentTime:int = getTimer();
+            
+            this._Bps  = LoadUtil.calculateBps(this.bytesLoaded, this._startTime, currentTime);
+            this._time = currentTime - this._startTime;
+            
+            this._progress.decimalPercentage = this.bytesLoaded / this.bytesTotal;
+            
+            this.dispatchEvent(this._createDefinedLoadEvent(LoadEvent.PROGRESS));
+        }
+        
+        /**
+            @sends LoadEvent#COMPLETE - Dispatched when file has completely loaded.
+        */
+        protected function _onComplete(complete:Event = null):void {
+            this._complete();
+            
+            this.dispatchEvent(this._createDefinedLoadEvent(LoadEvent.COMPLETE));
+        }
+        
+        protected function _createDefinedLoadEvent(type:String):LoadEvent {
+            var loadEvent:LoadEvent = new LoadEvent(type);
+            loadEvent.attempts      = this.attempts;
+            loadEvent.Bps           = this.Bps;
+            loadEvent.bytesLoaded   = this.bytesLoaded;
+            loadEvent.bytesTotal    = this.bytesTotal;
+            loadEvent.latency       = this.latency;
+            loadEvent.progress      = this.progress;
+            loadEvent.retries       = this.retries;
+            loadEvent.time          = this.time;
+            
+            return loadEvent;
+        }
+        
+        override protected function _complete():void {
+            var currentTime:int              = getTimer();
+            this._Bps                        = LoadUtil.calculateBps(this.bytesTotal, this._startTime, currentTime);
+            this._time                       = currentTime - this._startTime;
+            this._loaded                     = true;
+            this._progress.decimalPercentage = 1;
+            
+            super._complete();
+        }
+    }
+}
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">Base class used by load classes.</span> LoadItem is not designed to be used on its own and needs to be extended to function.<div class="classFields"><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Events broadcasted to listeners:</span><div class="item"><ul><li><a href="org_casalib_events_LoadEvent.html#START">LoadEvent</a> with type: <code>START</code>  - Dispatched when a load is started.</li><li><a href="org_casalib_events_LoadEvent.html#STOP">LoadEvent</a> with type: <code>STOP</code>  - Dispatched if the load is stopped during the loading process.</li><li><a href="org_casalib_events_RetryEvent.html#RETRY">RetryEvent</a> with type: <code>RETRY</code>  - Dispatched if the download attempt failed and the class is going to attempt to download the file again.</li><li>IOErrorEvent with type: <code>IO_ERROR</code>  - Dispatched if requested file cannot be loaded and the download terminates.</li><li>Event with type: <code>OPEN</code>  - Dispatched when a load operation starts.</li><li><a href="org_casalib_events_LoadEvent.html#PROGRESS">LoadEvent</a> with type: <code>PROGRESS</code>  - Dispatched as data is received during the download process.</li><li><a href="org_casalib_events_LoadEvent.html#COMPLETE">LoadEvent</a> with type: <code>COMPLETE</code>  - Dispatched when file has completely loaded.</li></ul></div></div></div></div></div></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#LoadItem">LoadItem</a><span class="typeInfo"> (load:*, request:*)</span><ul class="summary"><li>Defines the load object and file location.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Class properties</span><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Class properties inherited from <span class="superclass"><a class="className" href="org_casalib_process_Process.html">Process</a></span></span><div class="item inheritedList"><a href="org_casalib_process_Process.html#NORM_PRIORITY">NORM_PRIORITY</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance properties</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#preventCache">preventCache</a><span class="typeInfo">  : Boolean</span><ul class="summary"><li>Specifies if a random value name/value pair should be appended to the query string to help prevent caching <span class="codeIdentifier">true</span>, or not append <span class="codeIdentifier">false</span>; defaults to <span class="codeIdentifier">false</span>.</li></ul></li><li class="sortli listnum2"><a href="#bytesTotal">bytesTotal</a><span class="typeInfo">  : Number</span><ul class="summary"><li>The total number of bytes of the requested file.</li></ul></li><li class="sortli listnum3"><a href="#bytesLoaded">bytesLoaded</a><span class="typeInfo">  : uint</span><ul class="summary"><li>The number of bytes loaded of the requested file.</li></ul></li><li class="sortli listnum4"><a href="#progress">progress</a><span class="typeInfo">  : <a class="className" href="org_casalib_math_Percent.html">Percent</a></span><ul class="summary"><li>The percent that the requested file has loaded.</li></ul></li><li class="sortli listnum5"><a href="#attempts">attempts</a><span class="typeInfo">  : uint</span><ul class="summary"><li>The number of additional times the file has attempted to load after start was called.</li></ul></li><li class="sortli listnum6"><a href="#retries">retries</a><span class="typeInfo">  : uint</span><ul class="summary"><li>The number of additional load retries the class should attempt before failing; defaults to <span class="codeNumber">2</span> additional retries / <span class="codeNumber">3</span> total load attempts.</li></ul></li><li class="sortli listnum7"><a href="#urlRequest">urlRequest</a><span class="typeInfo">  : URLRequest</span><ul class="summary"><li>The URLRequest reference to the requested file.</li></ul></li><li class="sortli listnum8"><a href="#url">url</a><span class="typeInfo">  : String</span><ul class="summary"><li>The URL of the requested file.</li></ul></li><li class="sortli listnum9"><a href="#loading">loading</a><span class="typeInfo">  : Boolean</span><ul class="summary"><li>Determines if the requested file is loading <span class="codeIdentifier">true</span>, or if it isn't currently loading <span class="codeIdentifier">false</span>.</li></ul></li><li class="sortli listnum10"><a href="#loaded">loaded</a><span class="typeInfo">  : Boolean</span><ul class="summary"><li>Determines if the requested file has loaded <span class="codeIdentifier">true</span>, or hasn't finished loading <span class="codeIdentifier">false</span>.</li></ul></li><li class="sortli listnum11"><a href="#Bps">Bps</a><span class="typeInfo">  : int</span><ul class="summary"><li>The current download speed of the requested file in bytes per second.</li></ul></li><li class="sortli listnum12"><a href="#time">time</a><span class="typeInfo">  : uint</span><ul class="summary"><li>The current time duration in milliseconds the load has taken.</li></ul></li><li class="sortli listnum13"><a href="#latency">latency</a><span class="typeInfo">  : uint</span><ul class="summary"><li>The time in milliseconds that the server took to respond.</li></ul></li><li class="sortli listnum14"><a href="#httpStatus">httpStatus</a><span class="typeInfo">  : uint</span><ul class="summary"><li>The HTTP status code returned by the server; or <span class="codeNumber">0</span> if no status has/can been received or the load is a stream.</li></ul></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_process_Process.html">Process</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_process_Process.html#_hasCompleted">_hasCompleted</a>  <a class="private" href="org_casalib_process_Process.html#_isRunning">_isRunning</a>  <a class="private" href="org_casalib_process_Process.html#_priority">_priority</a>  <a href="org_casalib_process_Process.html#completed">completed</a>  <a href="org_casalib_process_Process.html#priority">priority</a>  <a href="org_casalib_process_Process.html#running">running</a></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_events_RemovableEventDispatcher.html">RemovableEventDispatcher</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_events_RemovableEventDispatcher.html#_isDestroyed">_isDestroyed</a>  <a class="private" href="org_casalib_events_RemovableEventDispatcher.html#_listenerManager">_listenerManager</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#destroyed">destroyed</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul4"><li class="sortli listnum1"><a href="#start">start</a><span class="typeInfo">  : void</span><ul class="summary"><li>Begins the loading process.</li></ul></li><li class="sortli listnum2"><a href="#stop">stop</a><span class="typeInfo">  : void</span><ul class="summary"><li>Cancels the currently loading file from completing.</li></ul></li><li class="sortli listnum3"><a href="#destroy">destroy</a><span class="typeInfo">  : void</span></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_process_Process.html">Process</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_process_Process.html#_complete">_complete</a>  <a href="org_casalib_process_Process.html#destroy">destroy</a>  <a href="org_casalib_process_Process.html#start">start</a>  <a href="org_casalib_process_Process.html#stop">stop</a></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_events_RemovableEventDispatcher.html">RemovableEventDispatcher</a></span></span><div class="item inheritedList"><a href="org_casalib_events_RemovableEventDispatcher.html#addEventListener">addEventListener</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#destroy">destroy</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#dispatchEvent">dispatchEvent</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#removeEventListener">removeEventListener</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#removeEventListeners">removeEventListeners</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#removeEventsForListener">removeEventsForListener</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#removeEventsForType">removeEventsForType</a></div></div></div></div></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="LoadItem"><h3>LoadItem</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>LoadItem</b> (
+
+</div><div class="code">load:*,
+request:*)</div><br class="clear" /></div></div><div class="description"> Defines the load object and file location. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">load   <span class="itemSeparator">:</span></div><div>The load object.</div></div><div class="item"><div class="floatbox code colorizedCode">request<span class="itemSeparator">:</span></div><div>A String or an URLRequest reference to the file you wish to load.</div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Throws:</span><div class="item"><ul><li> <a class="className" href="org_casalib_errors_ArguementTypeError.html">ArguementTypeError</a> if you pass a value type other than a String or URLRequest to parameter <code>request</code>. </li></ul></div></div></div></div></div></div><div class="memberSection"><h2 id="Instanceproperties">Instance properties</h2><div class="member" id="attempts"><h3>attempts</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>attempts</b>:uint
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The number of additional times the file has attempted to load after <a href="org_casalib_load_LoadItem.html#start">start</a> was called. </div></div><div class="member" id="Bps"><h3>Bps</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>Bps</b>:int
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The current download speed of the requested file in bytes per second. </div></div><div class="member" id="bytesLoaded"><h3>bytesLoaded</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>bytesLoaded</b>:uint
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The number of bytes loaded of the requested file. </div></div><div class="member" id="bytesTotal"><h3>bytesTotal</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>bytesTotal</b>:Number
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The total number of bytes of the requested file. </div></div><div class="member" id="httpStatus"><h3>httpStatus</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>httpStatus</b>:uint
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The HTTP status code returned by the server; or <code><span class="codeNumber">0</span></code> if no status has/can been received or the load is a stream. </div></div><div class="member" id="latency"><h3>latency</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>latency</b>:uint
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The time in milliseconds that the server took to respond. </div></div><div class="member" id="loaded"><h3>loaded</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>loaded</b>:Boolean
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> Determines if the requested file has loaded <code><span class="codeIdentifier">true</span></code>, or hasn't finished loading <code><span class="codeIdentifier">false</span></code>. </div></div><div class="member" id="loading"><h3>loading</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>loading</b>:Boolean
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> Determines if the requested file is loading <code><span class="codeIdentifier">true</span></code>, or if it isn't currently loading <code><span class="codeIdentifier">false</span></code>. </div></div><div class="member" id="preventCache"><h3>preventCache</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>preventCache</b>:Boolean
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> Specifies if a random value name/value pair should be appended to the query string to help prevent caching <code><span class="codeIdentifier">true</span></code>, or not append <code><span class="codeIdentifier">false</span></code>; defaults to <code><span class="codeIdentifier">false</span></code>. </div></div><div class="member" id="progress"><h3>progress</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>progress</b>:<a class="className" href="org_casalib_math_Percent.html">Percent</a>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The percent that the requested file has loaded. </div></div><div class="member" id="retries"><h3>retries</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>retries</b>:uint
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The number of additional load retries the class should attempt before failing; defaults to <code><span class="codeNumber">2</span></code> additional retries / <code><span class="codeNumber">3</span></code> total load attempts. </div></div><div class="member" id="time"><h3>time</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>time</b>:uint
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The current time duration in milliseconds the load has taken. </div></div><div class="member" id="url"><h3>url</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>url</b>:String
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The URL of the requested file. </div></div><div class="member" id="urlRequest"><h3>urlRequest</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>urlRequest</b>:URLRequest
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The URLRequest reference to the requested file. </div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="destroy"><h3>destroy</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>destroy</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_process_Process.html#destroy">Process.destroy</a> </li></ul></div></div></div></div></div><div class="member" id="start"><h3>start</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>start</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="description"> Begins the loading process. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Events broadcasted to listeners:</span><div class="item"><ul><li><a href="org_casalib_events_LoadEvent.html#START">LoadEvent</a> with type: <code>START</code>  - Dispatched when a load is started.</li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_process_Process.html#start">Process.start</a> </li></ul></div></div></div></div></div><div class="member" id="stop"><h3>stop</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>stop</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="description"> Cancels the currently loading file from completing. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Events broadcasted to listeners:</span><div class="item"><ul><li><a href="org_casalib_events_LoadEvent.html#STOP">LoadEvent</a> with type: <code>STOP</code>  - Dispatched if the load is stopped during the loading process.</li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_process_Process.html#stop">Process.stop</a> </li></ul></div></div></div></div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

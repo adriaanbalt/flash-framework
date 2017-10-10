@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/animation/channel
+END
+AbstractChannel3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/animation/channel/AbstractChannel3D.as
+END
+MatrixStackChannel3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/animation/channel/MatrixStackChannel3D.as
+END
+MatrixChannel3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/animation/channel/MatrixChannel3D.as
+END
+SinglePropertyChannel3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/animation/channel/SinglePropertyChannel3D.as
+END
+MorphChannel3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/animation/channel/MorphChannel3D.as
+END

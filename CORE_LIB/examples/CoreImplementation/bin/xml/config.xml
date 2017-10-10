@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+
+	<siteConfig>
+	
+		<stageScaleMode>noScale</stageScaleMode>
+		<stageAlign>TL</stageAlign>
+		<siteWidth>800</siteWidth>
+		<siteHeight>600</siteHeight>
+		
+		<contextMenu>
+			<copyright>Wunderman Core Implementation</copyright>
+		</contextMenu>
+		
+		<crossDomain>
+			<allow src="*"/>
+			<allowInsecure src="*"/>
+			<policy src="http://www.wunderman.com/crossdomain.xml"/>
+		</crossDomain>
+		
+	</siteConfig>
+	<sitePaths>
+	
+		<locale></locale>
+		
+	</sitePaths>
+	<depotConfig>
+	
+		<css id="global" src="view.css"/>
+		<asset id="global" src="assets.swf"/>
+		<font id="global" src="fonts.swf"/>
+		
+	</depotConfig>	
+	<servicesConfig>
+	
+		<metricsToggle>false</metricsToggle>
+		
+	</servicesConfig>	
+	
+</data>

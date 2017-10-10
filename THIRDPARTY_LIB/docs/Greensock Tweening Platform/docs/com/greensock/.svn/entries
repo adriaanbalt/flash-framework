@@ -1,0 +1,148 @@
+8
+
+dir
+261
+https://svn.wunderman-review.com/svn/_interactive/thirdparty/as3/trunk/docs/Greensock%20Tweening%20Platform/docs/com/greensock
+https://svn.wunderman-review.com/svn/_interactive
+
+
+
+2009-12-28T16:19:17.211870Z
+129
+epsteinb
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b6b4794c-6378-bb41-bb06-88728c6e73ad
+
+OverwriteManager.html
+file
+
+
+
+
+2010-03-08T18:14:35.000000Z
+10753529446dbc280b338092aab574b8
+2009-12-18T07:33:50.090536Z
+106
+smitht
+
+TimelineLite.html
+file
+
+
+
+
+2010-03-08T18:14:35.000000Z
+2c2edfb2fadce24e19881b8d46faf593
+2009-12-18T07:33:50.090536Z
+106
+smitht
+
+TimelineMax.html
+file
+
+
+
+
+2010-03-08T18:14:33.000000Z
+212628e791407b2f685516a5b91da47d
+2009-12-18T07:33:50.090536Z
+106
+smitht
+
+TweenLite.html
+file
+
+
+
+
+2010-03-08T18:14:35.000000Z
+48e8b92596dd479e78b420775a76abc3
+2009-12-18T07:33:50.090536Z
+106
+smitht
+
+TweenMax.html
+file
+
+
+
+
+2010-03-08T18:14:36.000000Z
+d55711cd51357cee234e3993745a7238
+2009-12-18T07:33:50.090536Z
+106
+smitht
+
+TweenNano.html
+file
+
+
+
+
+2010-03-08T18:14:33.000000Z
+01f6d3c40af1e7d48aa20b1a0baf4ef6
+2009-12-18T07:33:50.090536Z
+106
+smitht
+
+changelog.txt
+file
+
+
+
+
+2010-03-08T18:14:35.000000Z
+7028791be8aa7366f1230eca012ba70b
+2009-12-28T16:18:54.047337Z
+128
+epsteinb
+
+class-list.html
+file
+
+
+
+
+2010-03-08T18:14:33.000000Z
+c792804f0784ff7a0b7914a16253f071
+2009-12-18T07:33:50.090536Z
+106
+smitht
+
+core
+dir
+
+easing
+dir
+
+events
+dir
+
+package-detail.html
+file
+
+
+
+
+2010-03-08T18:14:36.000000Z
+b96ce420410cc370f7732cf090b72a8c
+2009-12-18T07:33:50.090536Z
+106
+smitht
+
+plugins
+dir
+

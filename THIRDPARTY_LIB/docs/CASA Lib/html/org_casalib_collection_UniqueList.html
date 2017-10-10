@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>UniqueList</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_collection_UniqueList"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>UniqueList</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_collection.html">org.casalib.collection</a></td></tr><tr><th align="left">Inherits from:</th><td><a class="className" href="org_casalib_collection_List.html">List</a></td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">04/27/08</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Aaron Clinger</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.collection.UniqueList</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Thursday, 19 February 2009, 11:33:36</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">/*
+    CASA Lib for ActionScript 3.0
+    Copyright (c) 2009, Aaron Clinger &amp; Contributors of CASA Lib
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    - Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    
+    - Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    
+    - Neither the name of the CASA Lib nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.casalib.collection {
+    import org.casalib.collection.List;
+    import org.casalib.util.ArrayUtil;
+    
+    /**
+        An ordered or sequence collection that contains no duplicates. Similar to Java's Set but contains all the methods of List.
+        
+        @author Aaron Clinger
+        @version 04/27/08
+        @see List
+    */
+    public class UniqueList extends List {
+        
+        
+        /**
+            Creates a new UniqueList;
+            
+            @param collection: An Array of items to populate the contents of this list; UniqueList will only accept the unique elements of the Array.
+        */
+        public function UniqueList(collection:Array = null) {
+            super((collection == null) ? null : ArrayUtil.removeDuplicates(collection));
+        }
+        
+        /**
+            {@inheritDoc}
+            
+            @param item: {@inheritDoc}
+            @return Returns &lt;code>true&lt;/code> if the element was unique and added; otherwise &lt;code>false&lt;/code>.
+        */
+        override public function addItem(item:*):Boolean {
+            if (this.contains(item))
+                return false;
+            
+            this._collection.push(item);
+            
+            return true;
+        }
+        
+        /**
+            {@inheritDoc}
+            
+            @param item: {@inheritDoc}
+            @param index: {@inheritDoc}
+            @return Returns &lt;code>true&lt;/code> if the element was unique and added; otherwise &lt;code>false&lt;/code>.
+        */
+        override public function addItemAt(item:*, index:int):Boolean {
+            if (this.contains(item))
+                return false;
+            
+            this._collection.splice(index, 0, item);
+            
+            return true;
+        }
+        
+        /**
+            Modifies original list by adding all the elements from another list that aren't already present.
+            
+            @param items: {@inheritDoc}
+            @return Returns &lt;code>true&lt;/code> if any elements of the specified list were unique and added; otherwise &lt;code>false&lt;/code>.
+        */
+        override public function addItems(items:IList):Boolean {
+            var uniqueItems:Array = items.toArray();
+            
+            ArrayUtil.removeItems(uniqueItems, this.toArray());
+            
+            if (uniqueItems.length == 0)
+                return false;
+            
+            this._collection = this._collection.concat(uniqueItems);
+            
+            return true;
+        }
+        
+        /**
+            Modifies original list by adding all the elements from another list, that aren't already present, at a specified position.
+            
+            @param items: {@inheritDoc}
+            @param index: {@inheritDoc}
+            @return Returns &lt;code>true&lt;/code> if any elements of the specified list were unique and added; otherwise &lt;code>false&lt;/code>.
+        */
+        override public function addItemsAt(items:IList, index:int = 0x7fffffff):Boolean {
+            var uniqueItems:Array = items.toArray();
+            
+            ArrayUtil.removeItems(uniqueItems, this.toArray());
+            
+            if (uniqueItems.length == 0)
+                return false;
+            
+            return ArrayUtil.addItemsAt(this._collection, uniqueItems, index);
+        }
+        
+        /**
+            {@inheritDoc}
+            
+            @param item: {@inheritDoc}
+            @param index: {@inheritDoc}
+            @return {@inheritDoc}
+            @throws Error if you try to set an item that is already contained in the list.
+        */
+        override public function setItem(item:*, index:int):* {
+            if (this.contains(item))
+                throw new Error('List already contains specified item (' + item + ').');
+            
+            return this._collection.splice(index, 1, item)[0];
+        }
+        
+        /**
+            {@inheritDoc}
+            
+            @param startIndex: {@inheritDoc}
+            @param endIndex: {@inheritDoc}
+            @return {@inheritDoc}
+        */
+        override public function subList(startIndex:int = 0, endIndex:int = 16777215):IList {
+            return new UniqueList(this._collection.slice(startIndex, endIndex));
+        }
+        
+        /**
+            {@inheritDoc}
+            
+            @return {@inheritDoc}
+        */
+        override public function clone():IList {
+            return new UniqueList(this.toArray());
+        }
+    }
+}
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">An ordered or sequence collection that contains no duplicates.</span> Similar to Java's Set but contains all the methods of List.<div class="classFields"><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">See also:</span><div class="item"><ul><li> <a class="className" href="org_casalib_collection_List.html">List</a> </li></ul></div></div></div></div></div></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#UniqueList">UniqueList</a><span class="typeInfo"> (collection:Array = null)</span><ul class="summary"><li>    Creates a new UniqueList;</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Instance properties</span><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_collection_List.html">List</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_collection_List.html#_collection">_collection</a>  <a href="org_casalib_collection_List.html#size">size</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#addItem">addItem</a><span class="typeInfo"> (item:*) : Boolean</span><ul class="summary"><li><div class="inheritDoc">Appends the specified item to the end of this list.</li></ul></li><li class="sortli listnum2"><a href="#addItemAt">addItemAt</a><span class="typeInfo"> (item:*, index:int) : Boolean</span><ul class="summary"><li><div class="inheritDoc">Inserts an item as a specified position.</li></ul></li><li class="sortli listnum3"><a href="#addItems">addItems</a><span class="typeInfo"> (items:<a class="className" href="org_casalib_collection_IList.html">IList</a>) : Boolean</span><ul class="summary"><li>Modifies original list by adding all the elements from another list that aren't already present.</li></ul></li><li class="sortli listnum4"><a href="#addItemsAt">addItemsAt</a><span class="typeInfo"> (items:<a class="className" href="org_casalib_collection_IList.html">IList</a>, index:int = 0x7fffffff) : Boolean</span><ul class="summary"><li>Modifies original list by adding all the elements from another list, that aren't already present, at a specified position.</li></ul></li><li class="sortli listnum5"><a href="#setItem">setItem</a><span class="typeInfo"> (item:*, index:int) : *</span><ul class="summary"><li><div class="inheritDoc">Replaces an item at a specified position.</li></ul></li><li class="sortli listnum6"><a href="#subList">subList</a><span class="typeInfo"> (startIndex:int = 0, endIndex:int = 16777215) : <a class="className" href="org_casalib_collection_IList.html">IList</a></span><ul class="summary"><li><div class="inheritDoc">Returns a portion of this list.</li></ul></li><li class="sortli listnum7"><a href="#clone">clone</a><span class="typeInfo">  : <a class="className" href="org_casalib_collection_IList.html">IList</a></span><ul class="summary"><li><div class="inheritDoc">Returns a list that is an exact copy of the original list.</li></ul></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_collection_List.html">List</a></span></span><div class="item inheritedList"><a href="org_casalib_collection_List.html#addItem">addItem</a>  <a href="org_casalib_collection_List.html#addItemAt">addItemAt</a>  <a href="org_casalib_collection_List.html#addItems">addItems</a>  <a href="org_casalib_collection_List.html#addItemsAt">addItemsAt</a>  <a href="org_casalib_collection_List.html#clear">clear</a>  <a href="org_casalib_collection_List.html#clone">clone</a>  <a href="org_casalib_collection_List.html#contains">contains</a>  <a href="org_casalib_collection_List.html#containsAll">containsAll</a>  <a href="org_casalib_collection_List.html#equals">equals</a>  <a href="org_casalib_collection_List.html#getItemAt">getItemAt</a>  <a href="org_casalib_collection_List.html#indexOf">indexOf</a>  <a href="org_casalib_collection_List.html#isEmpty">isEmpty</a>  <a href="org_casalib_collection_List.html#lastIndexOf">lastIndexOf</a>  <a href="org_casalib_collection_List.html#removeAllInstancesOfItem">removeAllInstancesOfItem</a>  <a href="org_casalib_collection_List.html#removeItem">removeItem</a>  <a href="org_casalib_collection_List.html#removeItemAt">removeItemAt</a>  <a href="org_casalib_collection_List.html#removeItems">removeItems</a>  <a href="org_casalib_collection_List.html#retainItems">retainItems</a>  <a href="org_casalib_collection_List.html#setItem">setItem</a>  <a href="org_casalib_collection_List.html#subList">subList</a>  <a href="org_casalib_collection_List.html#toArray">toArray</a>  <a href="org_casalib_collection_List.html#toString">toString</a></div></div></div></div></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="UniqueList"><h3>UniqueList</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>UniqueList</b> (
+</div><div class="code">collection:Array = null)</div><br class="clear" /></div></div><div class="description">     Creates a new UniqueList; </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">collection<span class="itemSeparator">:</span></div><div>An Array of items to populate the contents of this list; UniqueList will only accept the unique elements of the Array.</div></div></div></div></div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="addItem"><h3>addItem</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>addItem</b> (
+</div><div class="code">item:*) : Boolean</div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">Appends the specified item to the end of this list.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#addItem">#</a> </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">item<span class="itemSeparator">:</span></div><div><div class="inheritDoc">Element to be inserted.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#addItem">#</a></div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> Returns <code><span class="codeIdentifier">true</span></code> if the element was unique and added; otherwise <code><span class="codeIdentifier">false</span></code>. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_collection_List.html#addItem">List.addItem</a> </li></ul></div></div></div></div></div><div class="member" id="addItemAt"><h3>addItemAt</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>addItemAt</b> (
+
+</div><div class="code">item:*,
+index:int) : Boolean</div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">Inserts an item as a specified position.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#addItemAt">#</a> </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">item <span class="itemSeparator">:</span></div><div><div class="inheritDoc">Element to be inserted.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#addItemAt">#</a></div></div><div class="item"><div class="floatbox code colorizedCode">index<span class="itemSeparator">:</span></div><div><div class="inheritDoc">Position where the elements should be added.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#addItemAt">#</a></div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> Returns <code><span class="codeIdentifier">true</span></code> if the element was unique and added; otherwise <code><span class="codeIdentifier">false</span></code>. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_collection_List.html#addItemAt">List.addItemAt</a> </li></ul></div></div></div></div></div><div class="member" id="addItems"><h3>addItems</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>addItems</b> (
+</div><div class="code">items:<a class="className" href="org_casalib_collection_IList.html">IList</a>) : Boolean</div><br class="clear" /></div></div><div class="description"> Modifies original list by adding all the elements from another list that aren't already present. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">items<span class="itemSeparator">:</span></div><div><div class="inheritDoc">List of elements to add.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#addItems">#</a></div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> Returns <code><span class="codeIdentifier">true</span></code> if any elements of the specified list were unique and added; otherwise <code><span class="codeIdentifier">false</span></code>. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_collection_List.html#addItems">List.addItems</a> </li></ul></div></div></div></div></div><div class="member" id="addItemsAt"><h3>addItemsAt</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>addItemsAt</b> (
+
+</div><div class="code">items:<a class="className" href="org_casalib_collection_IList.html">IList</a>,
+index:int = 0x7fffffff) : Boolean</div><br class="clear" /></div></div><div class="description"> Modifies original list by adding all the elements from another list, that aren't already present, at a specified position. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">items<span class="itemSeparator">:</span></div><div><div class="inheritDoc">List of elements to add.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#addItemsAt">#</a></div></div><div class="item"><div class="floatbox code colorizedCode">index<span class="itemSeparator">:</span></div><div><div class="inheritDoc">Position where the elements should be added.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#addItemsAt">#</a></div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> Returns <code><span class="codeIdentifier">true</span></code> if any elements of the specified list were unique and added; otherwise <code><span class="codeIdentifier">false</span></code>. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_collection_List.html#addItemsAt">List.addItemsAt</a> </li></ul></div></div></div></div></div><div class="member" id="clone"><h3>clone</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>clone</b> (
+</div><div class="code">) : <a class="className" href="org_casalib_collection_IList.html">IList</a></div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">Returns a list that is an exact copy of the original list.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#clone">#</a> </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> <div class="inheritDoc">Returns a list that is an exact copy of the original list.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#clone">#</a> </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_collection_List.html#clone">List.clone</a> </li></ul></div></div></div></div></div><div class="member" id="setItem"><h3>setItem</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>setItem</b> (
+
+</div><div class="code">item:*,
+index:int) : *</div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">Replaces an item at a specified position.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#setItem">#</a> </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">item <span class="itemSeparator">:</span></div><div><div class="inheritDoc">The item to be stored.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#setItem">#</a></div></div><div class="item"><div class="floatbox code colorizedCode">index<span class="itemSeparator">:</span></div><div><div class="inheritDoc">The index of the item to replace.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#setItem">#</a></div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> <div class="inheritDoc">The element previously at the specified position.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#setItem">#</a> </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Throws:</span><div class="item"><ul><li> <span class="doesNotExist"> Error</span> if you try to set an item that is already contained in the list. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_collection_List.html#setItem">List.setItem</a> </li></ul></div></div></div></div></div><div class="member" id="subList"><h3>subList</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>subList</b> (
+
+</div><div class="code">startIndex:int = 0,
+endIndex:int = 16777215) : <a class="className" href="org_casalib_collection_IList.html">IList</a></div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">Returns a portion of this list.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#subList">#</a> </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">startIndex<span class="itemSeparator">:</span></div><div><div class="inheritDoc">The starting position.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#subList">#</a></div></div><div class="item"><div class="floatbox code colorizedCode">endIndex  <span class="itemSeparator">:</span></div><div><div class="inheritDoc">The ending position.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#subList">#</a></div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> <div class="inheritDoc">The specified portion of the list.</div><a class="followInheritDoc" href="org_casalib_collection_List.html#subList">#</a> </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_collection_List.html#subList">List.subList</a> </li></ul></div></div></div></div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

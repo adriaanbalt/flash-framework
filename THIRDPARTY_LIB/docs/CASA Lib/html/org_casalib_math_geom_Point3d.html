@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Point3d</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_math_geom_Point3d"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instanceproperties" accesskey="l">Instance <span class="accessKey">p</span>roperties</a></li><li><a href="#Classmethods" accesskey="a">Cl<span class="accessKey">a</span>ss methods</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>Point3d</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_math_geom.html">org.casalib.math.geom</a></td></tr><tr><th align="left">Inherits from:</th><td>none</td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">09/23/08</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Aaron Clinger, David Bliss, Mike Creighton</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.math.geom.Point3d</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Thursday, 19 February 2009, 11:33:36</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">/*
+    CASA Lib for ActionScript 3.0
+    Copyright (c) 2009, Aaron Clinger &amp; Contributors of CASA Lib
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    - Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    
+    - Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    
+    - Neither the name of the CASA Lib nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.casalib.math.geom {
+    import org.casalib.util.NumberUtil;
+    import org.casalib.math.Percent;
+    
+    /**
+        Stores location of a point in a three-dimensional coordinate system, where x represents the horizontal axis, y represents the vertical axis, z represents the axis that is vertically perpendicular to the x/y axis or depth.
+        
+        @author Aaron Clinger
+        @author David Bliss
+        @author Mike Creighton
+        @version 09/23/08
+    */
+    public class Point3d {
+        protected var _x:Number;
+        protected var _y:Number;
+        protected var _z:Number;
+        
+        
+        /**
+            Creates a new Point3d.
+            
+            @param x: The horizontal coordinate of the point.
+            @param y: The vertical coordinate of the point.
+            @param z: The depth coordinate of the point.
+        */
+        public function Point3d(x:Number = 0, y:Number = 0, z:Number = 0) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+        
+        /**
+            The horizontal coordinate of the point.
+        */
+        public function get x():Number {
+            return this._x;
+        }
+        
+        public function set x(position:Number):void {
+            this._x = position;
+        }
+        
+        /**
+            The vertical coordinate of the point.
+        */
+        public function get y():Number {
+            return this._y;
+        }
+        
+        public function set y(position:Number):void {
+            this._y = position;
+        }
+        
+        /**
+            The depth coordinate of the point.
+        */
+        public function get z():Number {
+            return this._z;
+        }
+        
+        public function set z(position:Number):void {
+            this._z = position;
+        }
+        
+        /**
+            Adds the coordinates of another Point3d to the coordinates of this point to create a new Point3d.
+            
+            @param point: The point to be added.
+            @return The new point.
+        */
+        public function add(point:Point3d):Point3d {
+            return new Point3d(this.x + point.x, this.y + point.y, this.z + point.z);
+        }
+        
+        /**
+            Subtracts the coordinates of another Point3d from the coordinates of this point to create a new Point3d.
+            
+            @param point: The point to be subtracted.
+            @return The new point.
+        */
+        public function subtract(point:Point3d):Point3d {
+            return new Point3d(this.x - point.x, this.y - point.y, this.z - point.z);
+        }
+        
+        /**
+            Offsets the Point object by the specified amount.
+            
+            @param xOffset: The amount by which to offset the horizontal coordinate.
+            @param yOffset: The amount by which to offset the vertical coordinate.
+            @param zOffset: The amount by which to offset the depth coordinate.
+        */
+        public function offset(xOffset:Number, yOffset:Number, zOffset:Number):void {
+            this.x += xOffset;
+            this.y += yOffset;
+            this.z += zOffset;
+        }
+        
+        /**
+            Determines if the point specified in the &lt;code>point&lt;/code> parameter is equal to this point object.
+            
+            @param point: A Point3d object.
+            @return Returns &lt;code>true&lt;/code> if shape's location is identical; otherwise &lt;code>false&lt;/code>.
+        */
+        public function equals(point:Point3d):Boolean {
+            return this.x == point.x &amp;&amp; this.y == point.y &amp;&amp; this.z == point.z;
+        }
+        
+        /**
+            Creates a copy of this Point3d object.
+            
+            @return A new Point3d with the same values as this point.
+        */
+        public function clone():Point3d {
+            return new Point3d(this.x, this.y, this.z);
+        }
+        
+        /**
+            Determines the distance between the first and second points in 3D space.
+            
+            @param firstPoint: The first Point3d.
+            @param secondPoint: The second Point3d.
+            @return Distance between the two points.
+        */
+        public static function distance(firstPoint:Point3d, secondPoint:Point3d):Number {
+            var x:Number = secondPoint.x - firstPoint.x;
+            var y:Number = secondPoint.y - firstPoint.y;
+            var z:Number = secondPoint.z - firstPoint.z;
+            
+            return Math.sqrt(x * x + y * y + z * z);
+        }
+        
+        /**
+            Determines a point between two specified points.
+            
+            @param firstPoint: The first Point3d.
+            @param secondPoint: The second Point3d.
+            @param amount: The level of interpolation between the two points. If &lt;code>0%&lt;/code>, &lt;code>firstPoint&lt;/code> is returned; if &lt;code>100%&lt;/code>, &lt;code>secondPoint&lt;/code> is returned.
+            @return The new, interpolated point.
+        */
+        public static function interpolate(firstPoint:Point3d, secondPoint:Point3d, amount:Percent):Point3d {
+            var x:Number = NumberUtil.interpolate(amount, firstPoint.x, secondPoint.x);
+            var y:Number = NumberUtil.interpolate(amount, firstPoint.y, secondPoint.y);
+            var z:Number = NumberUtil.interpolate(amount, firstPoint.z, secondPoint.z);
+            
+            return new Point3d(x, y, z);
+        }
+    }
+}
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">Stores location of a point in a three-dimensional coordinate system, where x represents the horizontal axis, y represents the vertical axis, z represents the axis that is vertically perpendicular to the x/y axis or depth.</span></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#Point3d">Point3d</a><span class="typeInfo"> (x:Number = 0, y:Number = 0, z:Number = 0)</span><ul class="summary"><li>Creates a new Point3d.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Instance properties</span><ul class="sortable" id="sortul2"><li class="sortli listnum1"><a href="#x">x</a><span class="typeInfo">  : Number</span><ul class="summary"><li>The horizontal coordinate of the point.</li></ul></li><li class="sortli listnum2"><a href="#y">y</a><span class="typeInfo">  : Number</span><ul class="summary"><li>The vertical coordinate of the point.</li></ul></li><li class="sortli listnum3"><a href="#z">z</a><span class="typeInfo">  : Number</span><ul class="summary"><li>The depth coordinate of the point.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Class methods</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#distance">distance</a><span class="typeInfo"> (firstPoint:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : Number</span><ul class="summary"><li>Determines the distance between the first and second points in 3D space.</li></ul></li><li class="sortli listnum2"><a href="#interpolate">interpolate</a><span class="typeInfo"> (firstPoint:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : <a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a></span><ul class="summary"><li>Determines a point between two specified points.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul4"><li class="sortli listnum1"><a href="#add">add</a><span class="typeInfo"> (point:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : <a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a></span><ul class="summary"><li>Adds the coordinates of another Point3d to the coordinates of this point to create a new Point3d.</li></ul></li><li class="sortli listnum2"><a href="#subtract">subtract</a><span class="typeInfo"> (point:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : <a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a></span><ul class="summary"><li>Subtracts the coordinates of another Point3d from the coordinates of this point to create a new Point3d.</li></ul></li><li class="sortli listnum3"><a href="#offset">offset</a><span class="typeInfo"> (xOffset:Number, yOffset:Number, zOffset:Number) : void</span><ul class="summary"><li>Offsets the Point object by the specified amount.</li></ul></li><li class="sortli listnum4"><a href="#equals">equals</a><span class="typeInfo"> (point:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : Boolean</span><ul class="summary"><li>Determines if the point specified in the point parameter is equal to this point object.</li></ul></li><li class="sortli listnum5"><a href="#clone">clone</a><span class="typeInfo">  : <a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a></span><ul class="summary"><li>Creates a copy of this Point3d object.</li></ul></li></ul></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="Point3d"><h3>Point3d</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>Point3d</b> (
+
+
+</div><div class="code">x:Number = 0,
+y:Number = 0,
+z:Number = 0)</div><br class="clear" /></div></div><div class="description"> Creates a new Point3d. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">x<span class="itemSeparator">:</span></div><div>The horizontal coordinate of the point.</div></div><div class="item"><div class="floatbox code colorizedCode">y<span class="itemSeparator">:</span></div><div>The vertical coordinate of the point.</div></div><div class="item"><div class="floatbox code colorizedCode">z<span class="itemSeparator">:</span></div><div>The depth coordinate of the point.</div></div></div></div></div></div></div><div class="memberSection"><h2 id="Instanceproperties">Instance properties</h2><div class="member" id="x"><h3>x</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>x</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The horizontal coordinate of the point. </div></div><div class="member" id="y"><h3>y</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>y</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The vertical coordinate of the point. </div></div><div class="member" id="z"><h3>z</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>z</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The depth coordinate of the point. </div></div></div><div class="memberSection"><h2 id="Classmethods">Class methods</h2><div class="member" id="distance"><h3>distance</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static</span> function <b>distance</b> (
+
+</div><div class="code">firstPoint:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>,
+secondPoint:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : Number</div><br class="clear" /></div></div><div class="description"> Determines the distance between the first and second points in 3D space. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">firstPoint <span class="itemSeparator">:</span></div><div>The first Point3d.</div></div><div class="item"><div class="floatbox code colorizedCode">secondPoint<span class="itemSeparator">:</span></div><div>The second Point3d.</div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> Distance between the two points. </li></ul></div></div></div></div></div><div class="member" id="interpolate"><h3>interpolate</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static</span> function <b>interpolate</b> (
+
+
+</div><div class="code">firstPoint:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>,
+secondPoint:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>,
+amount:<a class="className" href="org_casalib_math_Percent.html">Percent</a>) : <a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a></div><br class="clear" /></div></div><div class="description"> Determines a point between two specified points. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">firstPoint <span class="itemSeparator">:</span></div><div>The first Point3d.</div></div><div class="item"><div class="floatbox code colorizedCode">secondPoint<span class="itemSeparator">:</span></div><div>The second Point3d.</div></div><div class="item"><div class="floatbox code colorizedCode">amount     <span class="itemSeparator">:</span></div><div>The level of interpolation between the two points. If <code><span class="codeNumber">0</span>%</code>, <code>firstPoint</code> is returned; if <code><span class="codeNumber">100</span>%</code>, <code>secondPoint</code> is returned.</div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> The new, interpolated point. </li></ul></div></div></div></div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="add"><h3>add</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>add</b> (
+</div><div class="code">point:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : <a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a></div><br class="clear" /></div></div><div class="description"> Adds the coordinates of another Point3d to the coordinates of this point to create a new Point3d. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">point<span class="itemSeparator">:</span></div><div>The point to be added.</div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> The new point. </li></ul></div></div></div></div></div><div class="member" id="clone"><h3>clone</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>clone</b> (
+</div><div class="code">) : <a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a></div><br class="clear" /></div></div><div class="description"> Creates a copy of this Point3d object. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> A new Point3d with the same values as this point. </li></ul></div></div></div></div></div><div class="member" id="equals"><h3>equals</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>equals</b> (
+</div><div class="code">point:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : Boolean</div><br class="clear" /></div></div><div class="description"> Determines if the point specified in the <code>point</code> parameter is equal to this point object. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">point<span class="itemSeparator">:</span></div><div>A Point3d object.</div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> Returns <code><span class="codeIdentifier">true</span></code> if shape's location is identical; otherwise <code><span class="codeIdentifier">false</span></code>. </li></ul></div></div></div></div></div><div class="member" id="offset"><h3>offset</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>offset</b> (
+
+
+</div><div class="code">xOffset:Number,
+yOffset:Number,
+zOffset:Number) : void</div><br class="clear" /></div></div><div class="description"> Offsets the Point object by the specified amount. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">xOffset<span class="itemSeparator">:</span></div><div>The amount by which to offset the horizontal coordinate.</div></div><div class="item"><div class="floatbox code colorizedCode">yOffset<span class="itemSeparator">:</span></div><div>The amount by which to offset the vertical coordinate.</div></div><div class="item"><div class="floatbox code colorizedCode">zOffset<span class="itemSeparator">:</span></div><div>The amount by which to offset the depth coordinate.</div></div></div></div></div></div><div class="member" id="subtract"><h3>subtract</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>subtract</b> (
+</div><div class="code">point:<a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a>) : <a class="className" href="org_casalib_math_geom_Point3d.html">Point3d</a></div><br class="clear" /></div></div><div class="description"> Subtracts the coordinates of another Point3d from the coordinates of this point to create a new Point3d. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">point<span class="itemSeparator">:</span></div><div>The point to be subtracted.</div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> The new point. </li></ul></div></div></div></div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

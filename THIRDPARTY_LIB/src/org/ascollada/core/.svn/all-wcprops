@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core
+END
+DaeEntity.as
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeEntity.as
+END
+DaeImage.as
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeImage.as
+END
+DaeVertices.as
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeVertices.as
+END
+DaeSampler.as
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeSampler.as
+END
+DaeContributor.as
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeContributor.as
+END
+DaeAccessor.as
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeAccessor.as
+END
+DaeBlendWeight.as
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeBlendWeight.as
+END
+DaeInstanceNode.as
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeInstanceNode.as
+END
+DaeInput.as
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeInput.as
+END
+DaeMesh.as
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeMesh.as
+END
+DaeCamera.as
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeCamera.as
+END
+DaeController.as
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeController.as
+END
+DaeSpline.as
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeSpline.as
+END
+DaeDocument.as
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeDocument.as
+END
+DaeChannel.as
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeChannel.as
+END
+DaeGeometry.as
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeGeometry.as
+END
+DaeInstanceGeometry.as
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeInstanceGeometry.as
+END
+DaeInstanceController.as
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeInstanceController.as
+END
+DaeAnimationClip.as
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeAnimationClip.as
+END
+DaeSource.as
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeSource.as
+END
+DaeVertexWeights.as
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeVertexWeights.as
+END
+DaeAnimationCurve.as
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeAnimationCurve.as
+END
+DaeSkin.as
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeSkin.as
+END
+DaeAsset.as
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeAsset.as
+END
+DaeVisualScene.as
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeVisualScene.as
+END
+DaeNode.as
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeNode.as
+END
+DaeMorph.as
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeMorph.as
+END
+DaeAnimation.as
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaeAnimation.as
+END
+DaePrimitive.as
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/ascollada/core/DaePrimitive.as
+END

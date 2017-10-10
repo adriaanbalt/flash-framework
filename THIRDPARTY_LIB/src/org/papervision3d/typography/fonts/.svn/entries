@@ -1,0 +1,88 @@
+8
+
+dir
+261
+https://svn.wunderman-review.com/svn/_interactive/thirdparty/as3/trunk/src/org/papervision3d/typography/fonts
+https://svn.wunderman-review.com/svn/_interactive
+
+
+
+2009-12-01T23:59:26.576653Z
+50
+epsteinb
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b6b4794c-6378-bb41-bb06-88728c6e73ad
+
+HelveticaBold.as
+file
+
+
+
+
+2010-03-08T18:13:51.000000Z
+fb3576ebad336de75ee31ea287eeca60
+2009-12-01T16:16:11.849770Z
+48
+scholvincka
+
+HelveticaLight.as
+file
+
+
+
+
+2010-03-08T18:13:51.000000Z
+f1f9362b0a234e628d7240b63cf42d78
+2009-12-01T16:16:11.849770Z
+48
+scholvincka
+
+HelveticaMedium.as
+file
+
+
+
+
+2010-03-08T18:13:51.000000Z
+cd4650cf6adb4c93c4062cebfab433bf
+2009-12-01T16:16:11.849770Z
+48
+scholvincka
+
+HelveticaRoman.as
+file
+
+
+
+
+2010-03-08T18:13:51.000000Z
+39fc764af85b2fe3d2e3273a300a356c
+2009-12-01T16:16:11.849770Z
+48
+scholvincka
+
+use of fonts.txt.as
+file
+
+https://svn.wunderman-review.com/svn/_interactive/thirdparty/as3/trunk/src/org/papervision3d/typography/fonts/use%20of%20fonts.txt.as
+
+
+2010-03-08T18:13:51.000000Z
+86c16a58ee4410532fdccedbd6ac1d7d
+2009-12-01T23:59:26.576653Z
+50
+epsteinb
+

@@ -1,0 +1,8 @@
+package com.wunderman.coreimplementation.data.dataInterface {
+	import com.wunderman.core.data.IStorage;
+
+	public interface IMainStorage extends IStorage {
+		function getArray():Array;
+		function getDefault():String;
+	}
+}

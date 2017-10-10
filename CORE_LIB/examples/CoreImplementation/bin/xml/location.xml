@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<subnav>
+		<title></title>
+	</subnav>
+	<section>
+		<deeplinkid>homepage</deeplinkid>
+		<subnavdeeplinkid>location,homepage</subnavdeeplinkid>
+		<title>Homepage</title>
+		<description>Homepage content</description>
+	</section>
+	<section>
+	<deeplinkid>firstTier</deeplinkid>
+		<subnavdeeplinkid>location,firstTier</subnavdeeplinkid>
+		<title>First Tier</title>
+		<description>First Tier content</description>
+	</section>
+	<section>
+		<deeplinkid>firstTier,secondTierVarOne</deeplinkid>
+		<subnavdeeplinkid>location,firstTier,secondTierVarOne</subnavdeeplinkid>
+		<title>Second Tier Var One</title>
+		<description>Second Tier Var One content</description>
+	</section>
+	<section>
+		<deeplinkid>firstTier,secondTierVarTwo</deeplinkid>
+		<subnavdeeplinkid>location,firstTier,secondTierVarTwo</subnavdeeplinkid>
+		<title>Second Tier Var Two</title>
+		<description>Second Tier Var Two content</description>
+	</section>	
+</data>

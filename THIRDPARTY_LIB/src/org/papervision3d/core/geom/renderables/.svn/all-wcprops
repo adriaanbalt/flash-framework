@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables
+END
+VectorShapeRenderable.as
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/VectorShapeRenderable.as
+END
+Triangle3DInstance.as
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/Triangle3DInstance.as
+END
+Vertex3DInstance.as
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/Vertex3DInstance.as
+END
+IRenderable.as
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/IRenderable.as
+END
+Vertex3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/Vertex3D.as
+END
+Triangle3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/Triangle3D.as
+END
+Particle.as
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/Particle.as
+END
+AbstractRenderable.as
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/AbstractRenderable.as
+END
+Line3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/Line3D.as
+END
+Pixel3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/geom/renderables/Pixel3D.as
+END

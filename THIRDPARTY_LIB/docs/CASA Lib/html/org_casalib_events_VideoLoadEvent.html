@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>VideoLoadEvent</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_events_VideoLoadEvent"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instanceproperties" accesskey="l">Instance <span class="accessKey">p</span>roperties</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>VideoLoadEvent</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_events.html">org.casalib.events</a></td></tr><tr><th align="left">Inherits from:</th><td><a class="className" href="org_casalib_events_LoadEvent.html">LoadEvent</a> &lt; ProgressEvent</td></tr><tr><th align="left">Dispatched by:</th><td><ul><li><a class="className" href="org_casalib_load_VideoLoad.html">VideoLoad</a></li></ul></td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">04/19/09</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Aaron Clinger</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.events.VideoLoadEvent</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Sunday, 19 April 2009, 22:53:06</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">/*
+    CASA Lib for ActionScript 3.0
+    Copyright (c) 2009, Aaron Clinger &amp; Contributors of CASA Lib
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    - Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    
+    - Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    
+    - Neither the name of the CASA Lib nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.casalib.events {
+    import flash.events.Event;
+    import org.casalib.events.LoadEvent;
+    import org.casalib.math.Percent;
+    
+    /**
+        An event dispatched from {@link VideoLoad}.
+        
+        @author Aaron Clinger
+        @version 04/19/09
+    */
+    public class VideoLoadEvent extends LoadEvent {
+        public static const BUFFERED:String = 'buffered';
+        public static const PROGRESS:String = 'progress';
+        protected var _buffer:Percent = new Percent();
+        protected var _millisecondsUntilBuffered:int = -1;
+        
+        
+        /**
+            Creates a new VideoLoadEvent.
+            
+            @param type: The type of event.
+            @param bubbles: Determines whether the Event object participates in the bubbling stage of the event flow.
+            @param cancelable: Determines whether the Event object can be canceled.
+        */
+        public function VideoLoadEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
+            super(type, bubbles, cancelable);
+        }
+        
+        /**
+            The time remaining in milliseconds until the video has completely buffered.
+            
+            @usageNote {@link VideoLoad} will report &lt;code>-1&lt;/code> milliseconds until two seconds of load time has elapsed.
+        */
+        public function get millisecondsUntilBuffered():int {
+            return this._millisecondsUntilBuffered;
+        }
+        
+        public function set millisecondsUntilBuffered(milliseconds:int):void {
+            this._millisecondsUntilBuffered = milliseconds;
+        }
+        
+        /**
+            The percent the video has buffered.
+            
+            @usageNote {@link VideoLoad} will report &lt;code>0&lt;/code> percent until two seconds of load time has elapsed.
+        */
+        public function get buffer():Percent {
+            return this._buffer.clone();
+        }
+        
+        public function set buffer(percent:Percent):void {
+            this._buffer = percent.clone();
+        }
+        
+        /**
+            @return A string containing all the properties of the event.
+        */
+        override public function toString():String {
+            return this.formatToString('VideoLoadEvent', 'type', 'bubbles', 'cancelable', 'attempts', 'Bps', 'buffer', 'bytesLoaded', 'bytesTotal', 'httpStatus', 'latency', 'millisecondsUntilBuffered', 'progress', 'retries', 'time');
+        }
+        
+        /**
+            @return Duplicates an instance of the event.
+        */
+        override public function clone():Event {
+            var e:VideoLoadEvent        = new VideoLoadEvent(this.type, this.bubbles, this.cancelable);
+            e.attempts                  = this.attempts;
+            e.Bps                       = this.Bps;
+            e.buffer                    = this.buffer;
+            e.bytesLoaded               = this.bytesLoaded;
+            e.bytesTotal                = this.bytesTotal;
+            e.httpStatus                = this.httpStatus;
+            e.latency                   = this.latency;
+            e.millisecondsUntilBuffered = this.millisecondsUntilBuffered;
+            e.progress                  = this.progress;
+            e.retries                   = this.retries;
+            e.time                      = this.time;
+            
+            return e;
+        }
+    }
+}
+
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">An event dispatched from <a class="className" href="org_casalib_load_VideoLoad.html">VideoLoad</a>.</span></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#VideoLoadEvent">VideoLoadEvent</a><span class="typeInfo"> (type:String, bubbles:Boolean = false, cancelable:Boolean = false)</span><ul class="summary"><li>Creates a new VideoLoadEvent.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Constants</span><ul class="sortable" id="sortul2"><li class="sortli listnum1"><a href="#BUFFERED">BUFFERED</a><span class="typeInfo">  : String</span></li><li class="sortli listnum2"><a href="#PROGRESS">PROGRESS</a><span class="typeInfo">  : String</span></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Constants inherited from <span class="superclass"><a class="className" href="org_casalib_events_LoadEvent.html">LoadEvent</a></span></span><div class="item inheritedList"><a href="org_casalib_events_LoadEvent.html#COMPLETE">COMPLETE</a>  <a href="org_casalib_events_LoadEvent.html#PROGRESS">PROGRESS</a>  <a href="org_casalib_events_LoadEvent.html#START">START</a>  <a href="org_casalib_events_LoadEvent.html#STOP">STOP</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance properties</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#millisecondsUntilBuffered">millisecondsUntilBuffered</a><span class="typeInfo">  : int</span><ul class="summary"><li>The time remaining in milliseconds until the video has completely buffered.</li></ul></li><li class="sortli listnum2"><a href="#buffer">buffer</a><span class="typeInfo">  : <a class="className" href="org_casalib_math_Percent.html">Percent</a></span><ul class="summary"><li>The percent the video has buffered.</li></ul></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_events_LoadEvent.html">LoadEvent</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_events_LoadEvent.html#_attempts">_attempts</a>  <a class="private" href="org_casalib_events_LoadEvent.html#_Bps">_Bps</a>  <a class="private" href="org_casalib_events_LoadEvent.html#_httpStatus">_httpStatus</a>  <a class="private" href="org_casalib_events_LoadEvent.html#_latency">_latency</a>  <a class="private" href="org_casalib_events_LoadEvent.html#_progress">_progress</a>  <a class="private" href="org_casalib_events_LoadEvent.html#_retries">_retries</a>  <a class="private" href="org_casalib_events_LoadEvent.html#_time">_time</a>  <a href="org_casalib_events_LoadEvent.html#attempts">attempts</a>  <a href="org_casalib_events_LoadEvent.html#Bps">Bps</a>  <a href="org_casalib_events_LoadEvent.html#httpStatus">httpStatus</a>  <a href="org_casalib_events_LoadEvent.html#latency">latency</a>  <a href="org_casalib_events_LoadEvent.html#progress">progress</a>  <a href="org_casalib_events_LoadEvent.html#retries">retries</a>  <a href="org_casalib_events_LoadEvent.html#time">time</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul4"><li class="sortli listnum1"><a href="#toString">toString</a><span class="typeInfo">  : String</span></li><li class="sortli listnum2"><a href="#clone">clone</a><span class="typeInfo">  : Event</span></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_events_LoadEvent.html">LoadEvent</a></span></span><div class="item inheritedList"><a href="org_casalib_events_LoadEvent.html#clone">clone</a>  <a href="org_casalib_events_LoadEvent.html#toString">toString</a></div></div></div></div></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="VideoLoadEvent"><h3>VideoLoadEvent</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>VideoLoadEvent</b> (
+
+
+</div><div class="code">type:String,
+bubbles:Boolean = false,
+cancelable:Boolean = false)</div><br class="clear" /></div></div><div class="description"> Creates a new VideoLoadEvent. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">type      <span class="itemSeparator">:</span></div><div>The type of event.</div></div><div class="item"><div class="floatbox code colorizedCode">bubbles   <span class="itemSeparator">:</span></div><div>Determines whether the Event object participates in the bubbling stage of the event flow.</div></div><div class="item"><div class="floatbox code colorizedCode">cancelable<span class="itemSeparator">:</span></div><div>Determines whether the Event object can be canceled.</div></div></div></div></div></div></div><div class="memberSection"><h2 id="Constants">Constants</h2><div class="member" id="BUFFERED"><h3>BUFFERED</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static const</span> <b>BUFFERED</b>:String = <span class="codeString">'buffered'</span>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div></div><div class="member" id="PROGRESS"><h3>PROGRESS</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public static const</span> <b>PROGRESS</b>:String = <span class="codeString">'progress'</span>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div></div></div><div class="memberSection"><h2 id="Instanceproperties">Instance properties</h2><div class="member" id="buffer"><h3>buffer</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>buffer</b>:<a class="className" href="org_casalib_math_Percent.html">Percent</a>
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The percent the video has buffered. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Usage note:</span><div class="item"><ul><li> <a class="className" href="org_casalib_load_VideoLoad.html">VideoLoad</a> will report <code><span class="codeNumber">0</span></code> percent until two seconds of load time has elapsed. </li></ul></div></div></div></div></div><div class="member" id="millisecondsUntilBuffered"><h3>millisecondsUntilBuffered</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>millisecondsUntilBuffered</b>:int
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The time remaining in milliseconds until the video has completely buffered. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Usage note:</span><div class="item"><ul><li> <a class="className" href="org_casalib_load_VideoLoad.html">VideoLoad</a> will report <code>-<span class="codeNumber">1</span></code> milliseconds until two seconds of load time has elapsed. </li></ul></div></div></div></div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="clone"><h3>clone</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>clone</b> (
+</div><div class="code">) : Event</div><br class="clear" /></div></div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> Duplicates an instance of the event. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_events_LoadEvent.html#clone">LoadEvent.clone</a> </li></ul></div></div></div></div></div><div class="member" id="toString"><h3>toString</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>toString</b> (
+</div><div class="code">) : String</div><br class="clear" /></div></div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Returns:</span><div class="item"><ul><li> A string containing all the properties of the event. </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_events_LoadEvent.html#toString">LoadEvent.toString</a> </li></ul></div></div></div></div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

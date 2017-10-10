@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/_interactive/!svn/ver/207/_dev/as3/trunk/examples/CoreImplementation/src/com/wunderman/coreimplementation/data/dataInterface
+END
+IFirstTierStorage.as
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/_interactive/!svn/ver/207/_dev/as3/trunk/examples/CoreImplementation/src/com/wunderman/coreimplementation/data/dataInterface/IFirstTierStorage.as
+END
+INavStorage.as
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/_interactive/!svn/ver/207/_dev/as3/trunk/examples/CoreImplementation/src/com/wunderman/coreimplementation/data/dataInterface/INavStorage.as
+END
+IMainStorage.as
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/_interactive/!svn/ver/207/_dev/as3/trunk/examples/CoreImplementation/src/com/wunderman/coreimplementation/data/dataInterface/IMainStorage.as
+END
+ILocationStorage.as
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/_interactive/!svn/ver/207/_dev/as3/trunk/examples/CoreImplementation/src/com/wunderman/coreimplementation/data/dataInterface/ILocationStorage.as
+END

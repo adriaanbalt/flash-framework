@@ -1,0 +1,34 @@
+@charset "UTF-8";
+/* CSS Document */
+
+constants
+{
+	/* stage */
+ 	SITE_WIDTH:800;
+ 	SITE_HEIGHT:600;
+
+	/* video */
+	VIDEO_WIDTH:720;
+	VIDEO_HEIGHT:480;
+	
+	FEATURE_DISTANCE:400;
+	FEATURE_WIDTH:300;
+	FEATURE_OFFSET:240;
+
+	TOP_BUFFER:80;		
+	BOTTOM_BUFFER:120;
+		
+	/* HTML titles */
+	HTML_TITLE_HOME:Home;
+	HTML_TITLE_VIDEOS:Videos;
+		
+	VIDEOS_DEEP_LINK:tab1;
+		
+	FONT_LIGHT_COLOR:0xFFFFFF;
+	FONT_MEDIUM_COLOR:0x00CC00;
+	FONT_DARK_COLOR:0x000000;
+		
+	/* font */
+	FONT:Arial;	
+}
+

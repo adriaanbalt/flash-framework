@@ -1,0 +1,79 @@
+8
+
+dir
+261
+https://svn.wunderman-review.com/svn/_interactive/thirdparty/as3/trunk/src/org/papervision3d/typography
+https://svn.wunderman-review.com/svn/_interactive
+
+
+
+2009-12-01T23:59:26.576653Z
+50
+epsteinb
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b6b4794c-6378-bb41-bb06-88728c6e73ad
+
+Font3D.as
+file
+
+
+
+
+2010-03-08T18:13:51.000000Z
+d75ec067d2421280d1ec63315da69a13
+2009-12-01T16:16:11.849770Z
+48
+scholvincka
+
+Letter3D.as
+file
+
+
+
+
+2010-03-08T18:13:51.000000Z
+b60511f890b9f64809fb75c1acc7866b
+2009-12-01T16:16:11.849770Z
+48
+scholvincka
+
+Text3D.as
+file
+
+
+
+
+2010-03-08T18:13:52.000000Z
+d108c4b824a80e1c142c29085d46d380
+2009-12-01T16:16:11.849770Z
+48
+scholvincka
+
+VectorLetter3D.as
+file
+
+
+
+
+2010-03-08T18:13:52.000000Z
+b05dbb0e3a5315a4272956cdde773852
+2009-12-01T16:16:11.849770Z
+48
+scholvincka
+
+fonts
+dir
+

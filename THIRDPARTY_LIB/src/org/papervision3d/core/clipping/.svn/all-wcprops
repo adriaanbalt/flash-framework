@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/clipping
+END
+DefaultClipping.as
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/clipping/DefaultClipping.as
+END
+FrustumClipping.as
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/clipping/FrustumClipping.as
+END

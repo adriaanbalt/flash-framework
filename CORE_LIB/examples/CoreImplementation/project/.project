@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>CoreTemplate</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[source path] thirdparty-as3-trunk-src</name>
+			<type>2</type>
+			<location>/Users/smithtr/Library/Development/thirdparty/as3/trunk/src</location>
+		</link>
+		<link>
+			<name>[source path] Development-as3-trunk-src</name>
+			<type>2</type>
+			<location>/Users/smithtr/Library/Development/as3/trunk/src</location>
+		</link>
+		<link>
+			<name>[source path] Sites-Core Template-CoreImplementation-src</name>
+			<type>2</type>
+			<location>/Users/smithtr/Sites/Core Template/CoreImplementation/src</location>
+		</link>
+	</linkedResources>
+</projectDescription>

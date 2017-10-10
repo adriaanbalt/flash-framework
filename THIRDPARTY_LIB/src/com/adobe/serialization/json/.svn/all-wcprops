@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/com/adobe/serialization/json
+END
+JSONToken.as
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/com/adobe/serialization/json/JSONToken.as
+END
+JSONEncoder.as
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/com/adobe/serialization/json/JSONEncoder.as
+END
+JSONTokenizer.as
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/com/adobe/serialization/json/JSONTokenizer.as
+END
+JSON.as
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/com/adobe/serialization/json/JSON.as
+END
+JSONTokenType.as
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/com/adobe/serialization/json/JSONTokenType.as
+END
+JSONDecoder.as
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/com/adobe/serialization/json/JSONDecoder.as
+END
+JSONParseError.as
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/com/adobe/serialization/json/JSONParseError.as
+END

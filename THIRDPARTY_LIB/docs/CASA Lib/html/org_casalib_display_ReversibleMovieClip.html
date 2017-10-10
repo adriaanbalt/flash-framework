@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>ReversibleMovieClip</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_display_ReversibleMovieClip"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instanceproperties" accesskey="l">Instance <span class="accessKey">p</span>roperties</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>ReversibleMovieClip</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_display.html">org.casalib.display</a></td></tr><tr><th align="left">Inherits from:</th><td><a class="className" href="org_casalib_display_CasaMovieClip.html">CasaMovieClip</a> &lt; MovieClip</td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">05/30/09</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Aaron Clinger</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.display.ReversibleMovieClip</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Saturday, 30 May 2009, 07:06:05</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">/*
+    CASA Lib for ActionScript 3.0
+    Copyright (c) 2009, Aaron Clinger &amp; Contributors of CASA Lib
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    - Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    
+    - Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    
+    - Neither the name of the CASA Lib nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.casalib.display {
+    import flash.events.Event;
+    import org.casalib.display.CasaMovieClip;
+    import org.casalib.time.EnterFrame;
+    
+    
+    /**
+        Provides additional timeline controlling functions: {@link #reverse} and {@link #gotoAndReverse}.
+        
+        @author Aaron Clinger
+        @version 05/30/09
+    */
+    public class ReversibleMovieClip extends CasaMovieClip {
+        protected var _isReversing:Boolean;
+        protected var _reverseController:EnterFrame;
+        
+        
+        /**
+            Creates a new ReversibleMovieClip.
+        */
+        public function ReversibleMovieClip() {
+            super();
+            
+            this._reverseController = EnterFrame.getInstance();
+        }
+        
+        /**
+            Plays the timeline in reverse from current playhead position.
+        */
+        public function reverse():void {
+            this._playInReverse();
+        }
+        
+        /**
+            Sends the playhead to the specified frame on and reverses from that frame.
+            
+            @param frame: A number representing the frame number or a string representing the label of the frame to which the playhead is sent.
+        */
+        public function gotoAndReverse(frame:Object):void {
+            super.gotoAndStop(frame);
+            
+            this._playInReverse();
+        }
+        
+        /**
+            @exclude
+        */
+        override public function gotoAndPlay(frame:Object, scene:String = null):void {
+            this._stopReversing();
+            
+            super.gotoAndPlay(frame, scene);
+        }
+        
+        /**
+            @exclude
+        */
+        override public function gotoAndStop(frame:Object, scene:String = null):void {
+            this._stopReversing();
+            
+            super.gotoAndStop(frame, scene);
+        }
+        
+        /**
+            @exclude
+        */
+        override public function play():void {
+            this._stopReversing();
+            
+            super.play();
+        }
+        
+        /**
+            @exclude
+        */
+        override public function stop():void {
+            this._stopReversing();
+            
+            super.stop();
+        }
+        
+        /**
+            Determines if the MovieClip is currently reversing &lt;code>true&lt;/code>, or is stopped or playing &lt;code>false&lt;/code>.
+        */
+        public function get reversing():Boolean {
+            return this._isReversing;
+        }
+        
+        override public function destroy():void {
+            this._stopReversing();
+            
+            super.destroy();
+        }
+        
+        protected function _stopReversing():void {
+            if (!this._isReversing)
+                return;
+            
+            this._isReversing = false;
+            
+            this._reverseController.removeEventListener(Event.ENTER_FRAME, this._gotoFrameBefore);
+        }
+        
+        protected function _playInReverse():void {
+            if (this._isReversing)
+                return;
+            
+            this._isReversing = true;
+            
+            this._reverseController.addEventListener(Event.ENTER_FRAME, this._gotoFrameBefore, false, 0, true);
+        }
+        
+        protected function _gotoFrameBefore(e:Event):void {
+            if (this.currentFrame == 1)
+                super.gotoAndStop(this.totalFrames);
+            else
+                this.prevFrame();
+        }
+    }
+}
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">Provides additional timeline controlling functions: <a href="org_casalib_display_ReversibleMovieClip.html#reverse">reverse</a> and <a href="org_casalib_display_ReversibleMovieClip.html#gotoAndReverse">gotoAndReverse</a>.</span></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#ReversibleMovieClip">ReversibleMovieClip</a></li></ul></div><div class="memberSummaryPart"><span class="title">Instance properties</span><ul class="sortable" id="sortul2"><li class="sortli listnum1"><a href="#reversing">reversing</a><span class="typeInfo">  : Boolean</span><ul class="summary"><li>Determines if the MovieClip is currently reversing <span class="codeIdentifier">true</span>, or is stopped or playing <span class="codeIdentifier">false</span>.</li></ul></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_display_CasaMovieClip.html">CasaMovieClip</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_display_CasaMovieClip.html#_isDestroyed">_isDestroyed</a>  <a class="private" href="org_casalib_display_CasaMovieClip.html#_listenerManager">_listenerManager</a>  <a href="org_casalib_display_CasaMovieClip.html#destroyed">destroyed</a>  <a href="org_casalib_display_CasaMovieClip.html#stage">stage</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#reverse">reverse</a><span class="typeInfo">  : void</span><ul class="summary"><li>Plays the timeline in reverse from current playhead position.</li></ul></li><li class="sortli listnum2"><a href="#gotoAndReverse">gotoAndReverse</a><span class="typeInfo"> (frame:Object) : void</span><ul class="summary"><li>Sends the playhead to the specified frame on and reverses from that frame.</li></ul></li><li class="sortli listnum3"><a href="#destroy">destroy</a><span class="typeInfo">  : void</span></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_display_CasaMovieClip.html">CasaMovieClip</a></span></span><div class="item inheritedList"><a href="org_casalib_display_CasaMovieClip.html#addEventListener">addEventListener</a>  <a href="org_casalib_display_CasaMovieClip.html#destroy">destroy</a>  <a href="org_casalib_display_CasaMovieClip.html#dispatchEvent">dispatchEvent</a>  <a href="org_casalib_display_CasaMovieClip.html#removeChildren">removeChildren</a>  <a href="org_casalib_display_CasaMovieClip.html#removeChildrenAndDestroy">removeChildrenAndDestroy</a>  <a href="org_casalib_display_CasaMovieClip.html#removeEventListener">removeEventListener</a>  <a href="org_casalib_display_CasaMovieClip.html#removeEventListeners">removeEventListeners</a>  <a href="org_casalib_display_CasaMovieClip.html#removeEventsForListener">removeEventsForListener</a>  <a href="org_casalib_display_CasaMovieClip.html#removeEventsForType">removeEventsForType</a></div></div></div></div></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="ReversibleMovieClip"><h3>ReversibleMovieClip</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>ReversibleMovieClip</b> (
+</div><div class="code">)</div><br class="clear" /></div></div><div class="description"> Creates a new ReversibleMovieClip. </div></div></div><div class="memberSection"><h2 id="Instanceproperties">Instance properties</h2><div class="member" id="reversing"><h3>reversing</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>reversing</b>:Boolean
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> Determines if the MovieClip is currently reversing <code><span class="codeIdentifier">true</span></code>, or is stopped or playing <code><span class="codeIdentifier">false</span></code>. </div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="destroy"><h3>destroy</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>destroy</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_display_CasaMovieClip.html#destroy">CasaMovieClip.destroy</a> </li></ul></div></div></div></div></div><div class="member" id="gotoAndReverse"><h3>gotoAndReverse</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>gotoAndReverse</b> (
+</div><div class="code">frame:Object) : void</div><br class="clear" /></div></div><div class="description"> Sends the playhead to the specified frame on and reverses from that frame. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">frame<span class="itemSeparator">:</span></div><div>A number representing the frame number or a string representing the label of the frame to which the playhead is sent.</div></div></div></div></div></div><div class="member" id="reverse"><h3>reverse</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>reverse</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="description"> Plays the timeline in reverse from current playhead position. </div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

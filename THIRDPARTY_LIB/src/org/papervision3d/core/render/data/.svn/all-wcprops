@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/render/data
+END
+RenderSessionData.as
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/render/data/RenderSessionData.as
+END
+RenderStatistics.as
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/render/data/RenderStatistics.as
+END
+RenderHitData.as
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/render/data/RenderHitData.as
+END
+QuadTreeNode.as
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/render/data/QuadTreeNode.as
+END
+QuadTree.as
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/render/data/QuadTree.as
+END

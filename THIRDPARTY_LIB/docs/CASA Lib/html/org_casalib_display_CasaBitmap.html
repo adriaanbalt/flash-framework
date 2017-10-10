@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>CasaBitmap</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_display_CasaBitmap"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instanceproperties" accesskey="l">Instance <span class="accessKey">p</span>roperties</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>CasaBitmap</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_display.html">org.casalib.display</a></td></tr><tr><th align="left">Inherits from:</th><td>Bitmap</td></tr><tr><th align="left">Implements:</th><td><ul><li><a class="className" href="org_casalib_core_IDestroyable.html">IDestroyable</a></li><li><a class="className" href="org_casalib_events_IRemovableEventDispatcher.html">IRemovableEventDispatcher</a></li></ul></td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">06/10/09</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Aaron Clinger</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.display.CasaBitmap</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Wednesday, 10 June 2009, 11:49:38</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">/*
+    CASA Lib for ActionScript 3.0
+    Copyright (c) 2009, Aaron Clinger &amp; Contributors of CASA Lib
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    - Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    
+    - Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    
+    - Neither the name of the CASA Lib nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.casalib.display {
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Stage;
+    import flash.events.Event;
+    import org.casalib.core.IDestroyable;
+    import org.casalib.events.IRemovableEventDispatcher;
+    import org.casalib.events.ListenerManager;
+    import org.casalib.util.StageReference;
+    
+    
+    /**
+        A base Bitmap that implements {@link IRemovableEventDispatcher} and {@link IDestroyable}.
+        
+        @author Aaron Clinger
+        @version 06/10/09
+    */
+    public class CasaBitmap extends Bitmap implements IRemovableEventDispatcher, IDestroyable {
+        protected var _listenerManager:ListenerManager;
+        protected var _isDestroyed:Boolean;
+        
+        
+        /**
+            Creates a new CasaBitmap.
+            
+            @param bitmapData: The BitmapData object being referenced.
+            @param pixelSnapping: Whether or not the Bitmap object is snapped to the nearest pixel.
+            @param smoothing: Whether or not the bitmap is smoothed when scaled.
+        */
+        public function CasaBitmap(bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false) {
+            super(bitmapData, pixelSnapping, smoothing);
+            
+            this._listenerManager = ListenerManager.getManager(this);
+        }
+        
+        /**
+            @exclude
+        */
+        override public function dispatchEvent(event:Event):Boolean {
+            if (this.willTrigger(event.type))
+                return super.dispatchEvent(event);
+            
+            return true;
+        }
+        
+        /**
+            @exclude
+        */
+        override public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
+            super.addEventListener(type, listener, useCapture, priority, useWeakReference);
+            this._listenerManager.addEventListener(type, listener, useCapture, priority, useWeakReference);
+        }
+        
+        /**
+            @exclude
+        */
+        override public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void {
+            super.removeEventListener(type, listener, useCapture);
+            this._listenerManager.removeEventListener(type, listener, useCapture);
+        }
+        
+        public function removeEventsForType(type:String):void {
+            this._listenerManager.removeEventsForType(type);
+        }
+        
+        public function removeEventsForListener(listener:Function):void {
+            this._listenerManager.removeEventsForListener(listener);
+        }
+        
+        public function removeEventListeners():void {
+            this._listenerManager.removeEventListeners();
+        }
+        
+        /**
+            The Stage of the display object or if the display object is not added to the display list and {@link StageReference} is defined &lt;code>stage&lt;/code> will return the {@link StageReference#STAGE_DEFAULT default stage}; otherwise &lt;code>null&lt;/code>.
+        */
+        override public function get stage():Stage {
+            if (super.stage == null) {
+                try {
+                    return StageReference.getStage();
+                } catch (e:Error) {}
+            }
+            
+            return super.stage;
+        }
+        
+        public function get destroyed():Boolean {
+            return this._isDestroyed;
+        }
+        
+        /**
+            {@inheritDoc}
+            
+            Calling &lt;code>destroy()&lt;/code> on a CASA display object also removes it from its current parent.
+        */
+        public function destroy():void {
+            this.removeEventListeners();
+            this._listenerManager.destroy();
+            
+            this._isDestroyed = true;
+            
+            if (this.parent != null)
+                this.parent.removeChild(this);
+        }
+    }
+}
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">A base Bitmap that implements <a class="className" href="org_casalib_events_IRemovableEventDispatcher.html">IRemovableEventDispatcher</a> and <a class="className" href="org_casalib_core_IDestroyable.html">IDestroyable</a>.</span></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#CasaBitmap">CasaBitmap</a><span class="typeInfo"> (bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false)</span><ul class="summary"><li>Creates a new CasaBitmap.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Instance properties</span><ul class="sortable" id="sortul2"><li class="sortli listnum1"><a href="#stage">stage</a><span class="typeInfo">  : Stage</span><ul class="summary"><li>The Stage of the display object or if the display object is not added to the display list and StageReference is defined stage will return the default stage; otherwise <span class="codeIdentifier">null</span>.</li></ul></li><li class="sortli listnum2"><a href="#destroyed">destroyed</a><span class="typeInfo">  : Boolean</span></li></ul></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#removeEventsForType">removeEventsForType</a><span class="typeInfo"> (type:String) : void</span><ul class="summary"><li><div class="inheritDoc">    Removes all events of a specific type.</li></ul></li><li class="sortli listnum2"><a href="#removeEventsForListener">removeEventsForListener</a><span class="typeInfo"> (listener:Function) : void</span><ul class="summary"><li><div class="inheritDoc">Removes all events that report to the specified listener.</li></ul></li><li class="sortli listnum3"><a href="#removeEventListeners">removeEventListeners</a><span class="typeInfo">  : void</span><ul class="summary"><li><div class="inheritDoc">Removes all event listeners.</li></ul></li><li class="sortli listnum4"><a href="#destroy">destroy</a><span class="typeInfo">  : void</span><ul class="summary"><li><div class="inheritDoc">    Removes any event listeners and stops all internal processes to help allow for prompt garbage collection.</li></ul></li></ul></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="CasaBitmap"><h3>CasaBitmap</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>CasaBitmap</b> (
+
+
+</div><div class="code">bitmapData:BitmapData = null,
+pixelSnapping:String = "auto",
+smoothing:Boolean = false)</div><br class="clear" /></div></div><div class="description"> Creates a new CasaBitmap. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">bitmapData   <span class="itemSeparator">:</span></div><div>The BitmapData object being referenced.</div></div><div class="item"><div class="floatbox code colorizedCode">pixelSnapping<span class="itemSeparator">:</span></div><div>Whether or not the Bitmap object is snapped to the nearest pixel.</div></div><div class="item"><div class="floatbox code colorizedCode">smoothing    <span class="itemSeparator">:</span></div><div>Whether or not the bitmap is smoothed when scaled.</div></div></div></div></div></div></div><div class="memberSection"><h2 id="Instanceproperties">Instance properties</h2><div class="member" id="destroyed"><h3>destroyed</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>destroyed</b>:Boolean
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div></div><div class="member" id="stage"><h3>stage</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> <b>stage</b>:Stage
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The Stage of the display object or if the display object is not added to the display list and <a class="className" href="org_casalib_util_StageReference.html">StageReference</a> is defined <code>stage</code> will return the <a href="org_casalib_util_StageReference.html#STAGE_DEFAULT">default stage</a>; otherwise <code><span class="codeIdentifier">null</span></code>. </div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="destroy"><h3>destroy</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>destroy</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">    Removes any event listeners and stops all internal processes to help allow for prompt garbage collection.<br /><br />        <strong>Always call <code>stage</code> before deleting last object pointer.</strong></div><a class="followInheritDoc" href="org_casalib_core_IDestroyable.html#destroy">#</a><br /><br />        Calling <code>destroy()</code> on a CASA display object also removes it from its current parent. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Specified by:</span><div class="item"><ul><li> <a href="org_casalib_core_IDestroyable.html#destroy">IDestroyable.destroy</a> </li></ul></div></div></div></div></div><div class="member" id="removeEventListeners"><h3>removeEventListeners</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>removeEventListeners</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">Removes all event listeners.</div><a class="followInheritDoc" href="org_casalib_events_IRemovableEventDispatcher.html#removeEventListeners">#</a> </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Specified by:</span><div class="item"><ul><li> <a href="org_casalib_events_IRemovableEventDispatcher.html#removeEventListeners">IRemovableEventDispatcher.removeEventListeners</a> </li></ul></div></div></div></div></div><div class="member" id="removeEventsForListener"><h3>removeEventsForListener</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>removeEventsForListener</b> (
+</div><div class="code">listener:Function) : void</div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">Removes all events that report to the specified listener.</div><a class="followInheritDoc" href="org_casalib_events_IRemovableEventDispatcher.html#removeEventsForListener">#</a> </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">listener<span class="itemSeparator">:</span></div><div><div class="inheritDoc">The listener function that processes the event.</div><a class="followInheritDoc" href="org_casalib_events_IRemovableEventDispatcher.html#removeEventsForListener">#</a></div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Specified by:</span><div class="item"><ul><li> <a href="org_casalib_events_IRemovableEventDispatcher.html#removeEventsForListener">IRemovableEventDispatcher.removeEventsForListener</a> </li></ul></div></div></div></div></div><div class="member" id="removeEventsForType"><h3>removeEventsForType</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>removeEventsForType</b> (
+</div><div class="code">type:String) : void</div><br class="clear" /></div></div><div class="description"> <div class="inheritDoc">    Removes all events of a specific type.</div><a class="followInheritDoc" href="org_casalib_events_IRemovableEventDispatcher.html#removeEventsForType">#</a> </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">type<span class="itemSeparator">:</span></div><div><div class="inheritDoc">The type of event.</div><a class="followInheritDoc" href="org_casalib_events_IRemovableEventDispatcher.html#removeEventsForType">#</a></div></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Specified by:</span><div class="item"><ul><li> <a href="org_casalib_events_IRemovableEventDispatcher.html#removeEventsForType">IRemovableEventDispatcher.removeEventsForType</a> </li></ul></div></div></div></div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

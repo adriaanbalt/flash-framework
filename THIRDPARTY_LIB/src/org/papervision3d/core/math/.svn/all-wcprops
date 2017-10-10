@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math
+END
+Number3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/Number3D.as
+END
+Plane3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/Plane3D.as
+END
+Ray3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/Ray3D.as
+END
+Matrix3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/Matrix3D.as
+END
+NumberUV.as
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/NumberUV.as
+END
+Number2D.as
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/Number2D.as
+END
+Sphere3D.as
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/Sphere3D.as
+END
+Quaternion.as
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/Quaternion.as
+END
+BoundingSphere.as
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/BoundingSphere.as
+END
+AxisAlignedBoundingBox.as
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/core/math/AxisAlignedBoundingBox.as
+END

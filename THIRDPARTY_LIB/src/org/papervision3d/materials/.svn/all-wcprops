@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials
+END
+MovieMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/MovieMaterial.as
+END
+VideoStreamMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/VideoStreamMaterial.as
+END
+BitmapMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/BitmapMaterial.as
+END
+WireframeMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/WireframeMaterial.as
+END
+BitmapFileMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/BitmapFileMaterial.as
+END
+ColorMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/ColorMaterial.as
+END
+BitmapViewportMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/BitmapViewportMaterial.as
+END
+BitmapAssetMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/BitmapAssetMaterial.as
+END
+BitmapColorMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/BitmapColorMaterial.as
+END
+MovieAssetMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/MovieAssetMaterial.as
+END
+BitmapWireframeMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/BitmapWireframeMaterial.as
+END

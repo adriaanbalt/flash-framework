@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>VideoLoad</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="../css/VisDoc.css" /><script src="../js/jquery.js" type="text/javascript">//</script><script src="../js/common.js" type="text/javascript">//</script><script src="../js/doc.js" type="text/javascript">//</script></head><body id="page_org_casalib_load_VideoLoad"><script type="text/javascript">VisDoc.initBody();</script><div id="PageTop"><!----></div><div class="VisDoc"><div class="content"><div class="docNav"><ul><li><div id="twistyTOC_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenNotFramed"><a href="#"><span class="icon">+</span>Show TOC</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_show");</script><div id="twistyTOC_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited activeWhenFramed"><a href="#"><span class="icon">&times;</span>Hide TOC</a></div><span id="twistyTOC_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyTOC_hide");</script></li></ul><ul class="accessKeyLinks"><li><a href="#PageTop" accesskey="t"><span class="accessKey">T</span>op</a></li><li><a href="#Summary" accesskey="s"><span class="accessKey">S</span>ummary</a></li><li><a href="#Constructor" accesskey="c"><span class="accessKey">C</span>onstructors</a></li><li><a href="#Instanceproperties" accesskey="l">Instance <span class="accessKey">p</span>roperties</a></li><li><a href="#Instancemethods" accesskey="m">Instance <span class="accessKey">m</span>ethods</a></li></ul><br class="clear" /></div><h1>VideoLoad</h1><div class="classProperties"><table cellspacing="0"><tr><th align="left">Kind of class:</th><td>public class</td></tr><tr><th align="left">Package:</th><td><a class="className" href="package-org_casalib_load.html">org.casalib.load</a></td></tr><tr><th align="left">Inherits from:</th><td><a class="className" href="org_casalib_load_LoadItem.html">LoadItem</a> &lt; <a class="className" href="org_casalib_process_Process.html">Process</a> &lt; <a class="className" href="org_casalib_events_RemovableEventDispatcher.html">RemovableEventDispatcher</a> &lt; EventDispatcher</td></tr><tr><th class="classDetails" align="left">Version:</th><td class="classDetails">09/06/09</td></tr><tr><th class="classDetails" align="left">Author:</th><td class="classDetails">Aaron Clinger</td></tr><tr><th class="classDetails" align="left">Classpath:</th><td class="classDetails">org.casalib.load.VideoLoad</td></tr><tr><th class="classDetails" align="left">File last modified:</th><td class="classDetails">Sunday, 06 September 2009, 08:46:20</td></tr></table></div><div id="sourceCodeTop" class="sourceCodeView"><div id="twistyViewSourceshow" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">►&nbsp;</span><span class="linkLabel">View source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourceshow");</script><div id="twistyViewSourcehide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting twistyAnimate"><a href="#"><span class="icon">▼&nbsp;</span><span class="linkLabel">Hide source</span></a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcehide");</script><div id="twistyViewSourcetoggle" class="twistyContent twistyMakeHidden twistyRememberSetting"><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("twistyViewSourcetoggle");</script><div class="sourceCode"><textarea rows="10" cols="10" id="source" readonly="readonly">/*
+    CASA Lib for ActionScript 3.0
+    Copyright (c) 2009, Aaron Clinger &amp; Contributors of CASA Lib
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    - Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    
+    - Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    
+    - Neither the name of the CASA Lib nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.casalib.load {
+    import flash.events.AsyncErrorEvent;
+    import flash.events.Event;
+    import flash.events.IEventDispatcher;
+    import flash.events.NetStatusEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.media.Video;
+    import flash.net.NetConnection;
+    import flash.utils.getTimer;
+    import org.casalib.events.LoadEvent;
+    import org.casalib.events.VideoInfoEvent;
+    import org.casalib.events.VideoLoadEvent;
+    import org.casalib.load.LoadItem;
+    import org.casalib.math.Percent;
+    import org.casalib.time.EnterFrame;
+    import org.casalib.util.LoadUtil;
+    import flash.net.NetStream;
+    
+    [Event(name="cuePoint", type="org.casalib.events.VideoInfoEvent")]
+    [Event(name="metaData", type="org.casalib.events.VideoInfoEvent")]
+    [Event(name="buffered", type="org.casalib.events.VideoLoadEvent")]
+    [Event(name="progress", type="org.casalib.events.VideoLoadEvent")]
+    [Event(name="asyncError", type="flash.events.AsyncErrorEvent")]
+    [Event(name="netStatus", type="flash.events.NetStatusEvent")]
+    [Event(name="securityError", type="flash.events.SecurityErrorEvent")]
+    
+    /**
+        Provides an easy and standardized way to load video files. VideoLoad also includes {@link VideoLoadEvent buffer progress information} in the progress event.
+        
+        @author Aaron Clinger
+        @version 09/06/09
+        @example 
+            &lt;code>
+                package {
+                    import org.casalib.display.CasaMovieClip;
+                    import org.casalib.events.VideoLoadEvent;
+                    import org.casalib.load.VideoLoad;
+                    
+                    
+                    public class MyExample extends CasaMovieClip {
+                        protected var _videoLoad:VideoLoad;
+                        
+                        
+                        public function MyExample() {
+                            super();
+                            
+                            this._videoLoad = new VideoLoad("test.flv");
+                            this._videoLoad.pauseStart = true;
+                            this._videoLoad.addEventListener(VideoLoadEvent.PROGRESS, this._onProgress);
+                            this._videoLoad.addEventListener(VideoLoadEvent.BUFFERED, this._onBuffered);
+                            this._videoLoad.start();
+                            
+                            this.addChild(this._videoLoad.video);
+                        }
+                        
+                        protected function _onProgress(e:VideoLoadEvent):void {
+                            trace(e.millisecondsUntilBuffered + " milliseconds until buffered");
+                            trace(e.buffer.percentage + "% buffered");
+                            trace(e.progress.percentage + "% loaded");
+                        }
+                        
+                        protected function _onBuffered(e:VideoLoadEvent):void {
+                            e.target.netStream.resume();
+                        }
+                    }
+                }
+            &lt;/code>
+    */
+    public class VideoLoad extends LoadItem {
+        protected var _buffered:Boolean;
+        protected var _isOpen:Boolean;
+        protected var _netConnection:NetConnection;
+        protected var _duration:Number;
+        protected var _framePulse:EnterFrame;
+        protected var _pauseStart:Boolean;
+        protected var _buffer:Percent;
+        protected var _millisecondsUntilBuffered:int;
+        protected var _video:Video;
+        protected var _metaData:Object;
+        protected var _completeWhenBuffered:Boolean;
+        
+        
+        /**
+            Creates a new VideoLoad.
+            
+            @param request: A &lt;code>String&lt;/code> or an &lt;code>URLRequest&lt;/code> reference to the video you wish to load.
+            @param completeWhenBuffered: If the load should be considered complete when buffered &lt;code>true&lt;/code>, or when the video has completely loaded &lt;code>false&lt;/code>; defaults to &lt;code>false&lt;/code>.
+        */
+        public function VideoLoad(request:*, completeWhenBuffered:Boolean = false) {
+            this._netConnection = new NetConnection();
+            this._netConnection.connect(null);
+            
+            super(new NetStream(this._netConnection), request);
+            
+            this._initListeners(this._loadItem);
+            
+            this._completeWhenBuffered      = completeWhenBuffered;
+            this._duration                  = -1;
+            this._buffer                    = new Percent();
+            this._millisecondsUntilBuffered = -1;
+            this._framePulse                = EnterFrame.getInstance();
+            
+            this._video = new Video();
+            this._video.attachNetStream(this._loadItem);
+        }
+        
+        /**
+            The duration/length of the video.
+            
+            @usageNote Setting this value will override the length (provided by the video metadata) that is used to calculate buffer.
+        */
+        public function get duration():Number {
+            return this._duration;
+        }
+        
+        public function set duration(seconds:Number):void {
+            this._duration = seconds;
+        }
+        
+        /**
+            Indicates to pause video at start &lt;code>true&lt;/code>, or to let the video automatically play &lt;code>false&lt;/code>; defaults to &lt;code>false&lt;/code>.
+        */
+        public function get pauseStart():Boolean {
+            return this._pauseStart;
+        }
+        
+        public function set pauseStart(shouldPause:Boolean):void {
+            this._pauseStart = shouldPause;
+        }
+        
+        /**
+            A Video class with attached NetStream.
+        */
+        public function get video():Video {
+            return this._video;
+        }
+        
+        /**
+            The NetConnection class used by the VideoLoad class.
+        */
+        public function get netConnection():NetConnection {
+            return this._netConnection;
+        }
+        
+        /**
+            The NetStream class used by the VideoLoad class.
+        */
+        public function get netStream():NetStream {
+            return this._loadItem as NetStream;
+        }
+        
+        /**
+            The time remaining in milliseconds until the video has completely buffered.
+            
+            @usageNote {@link VideoLoad} will report &lt;code>-1&lt;/code> milliseconds until two seconds of load time has elapsed.
+        */
+        public function get millisecondsUntilBuffered():int {
+            return this._millisecondsUntilBuffered;
+        }
+        
+        /**
+            The percent the video has buffered.
+            
+            @usageNote {@link VideoLoad} will report &lt;code>0&lt;/code> percent until two seconds of load time has elapsed.
+        */
+        public function get buffer():Percent {
+            return this._buffer.clone();
+        }
+        
+        /**
+            Determines if the requested video has buffered &lt;code>true&lt;/code>, or hasn't finished buffering &lt;code>false&lt;/code>.
+        */
+        public function get buffered():Boolean {
+            return this._buffered;
+        }
+        
+        /**
+            The meta data information embedded in the video being loaded.
+        */
+        public function get metaData():Object {
+            return this._metaData;
+        }
+        
+        /**
+            @exclude
+        */
+        override public function start():void {
+            this._isOpen = false;
+            
+            super.start();
+        }
+        
+        /**
+            @exclude
+        */
+        override public function stop():void {
+            this._framePulse.removeEventListener(Event.ENTER_FRAME, this._onFrameFire);
+            
+            super.stop();
+        }
+        
+        /**
+            @usageNote &lt;code>destroy&lt;/code> does not close the internal NetStream object. To completely destroy a VideoLoad you have to close the NetStream object:
+            &lt;code>
+                this._videoLoad.netStream.close();
+                this._videoLoad.destroy();
+            &lt;/code>
+        */
+        override public function destroy():void {
+            this._dispatcher.removeEventListener(AsyncErrorEvent.ASYNC_ERROR, this.dispatchEvent);
+            this._dispatcher.removeEventListener(NetStatusEvent.NET_STATUS, this._netStatus);
+            this._netConnection.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, this.dispatchEvent);
+            
+            this._loadItem.client = this._loadItem;
+            
+            super.destroy();
+        }
+        
+        /**
+            @sends AsyncErrorEvent#ASYNC_ERROR - Dispatched when an exception is thrown asynchronously.
+            @sends SecurityErrorEvent#SECURITY_ERROR - Dispatched if load is outside the security sandbox.
+        */
+        override protected function _initListeners(dispatcher:IEventDispatcher):void {
+            this._dispatcher = dispatcher;
+            
+            this._dispatcher.addEventListener(AsyncErrorEvent.ASYNC_ERROR, this.dispatchEvent, false, 0, true);
+            this._dispatcher.addEventListener(NetStatusEvent.NET_STATUS, this._netStatus, false, 0, true);
+            this._netConnection.addEventListener(SecurityErrorEvent.SECURITY_ERROR, this.dispatchEvent, false, 0, true);
+            
+            var customClient:Object = new Object();
+            customClient.onCuePoint = this._onCuePoint;
+            customClient.onMetaData = this._onMetaData;
+            
+            this._loadItem.client = customClient;
+        }
+        
+        /**
+            @sends VideoLoadEvent#PROGRESS - Dispatched as video is received during the download process.
+            @sends VideoLoadEvent#BUFFERED - Dispatched when video is buffered.
+        */
+        override protected function _calculateLoadProgress():void {
+            var justBuffered:Boolean = false;
+            var currentTime:int      = getTimer();
+            this._Bps                = LoadUtil.calculateBps(this.bytesLoaded, this._startTime, currentTime);
+            this._time               = currentTime - this._startTime;
+            
+            this._progress.decimalPercentage = this.bytesLoaded / this.bytesTotal;
+            
+            if (!this.buffered &amp;&amp; this.duration > 0) {
+                if (currentTime - this._startTime > 2000) {
+                    var videoLength:uint = uint(Math.max((this.duration - 2) * 1000, 0));
+                    
+                    this._buffer                    = LoadUtil.calculateBufferPercent(this.bytesLoaded, this.bytesTotal, this._startTime, currentTime, videoLength);
+                    this._millisecondsUntilBuffered = LoadUtil.calculateMillisecondsUntilBuffered(this.bytesLoaded, this.bytesTotal, this._startTime, currentTime, videoLength);
+                }
+                
+                if (this.buffer.decimalPercentage == 1 || this._progress.decimalPercentage == 1)
+                    this._buffered = justBuffered = true;
+            }
+            
+            if (this.buffered) {
+                this._buffer.decimalPercentage  = 1;
+                this._millisecondsUntilBuffered = 0;
+            }
+            
+            if (this._completeWhenBuffered)
+                this._progress.decimalPercentage = this._buffer.decimalPercentage;
+            
+            this.dispatchEvent(this._createDefinedVideoLoadEvent(VideoLoadEvent.PROGRESS));
+            
+            if (justBuffered) {
+                this.dispatchEvent(this._createDefinedVideoLoadEvent(VideoLoadEvent.BUFFERED));
+                
+                if (this._completeWhenBuffered)
+                    this._onComplete();
+            }
+            
+            if (this.bytesLoaded >= this.bytesTotal &amp;&amp; this.buffered)
+                this._onComplete();
+        }
+        
+        override protected function _complete():void {
+            super._complete();
+            
+            this._framePulse.removeEventListener(Event.ENTER_FRAME, this._onFrameFire);
+        }
+        
+        override protected function _load():void {
+            this._loadItem.play(this._request.url);
+            
+            if (this.pauseStart)
+                this._loadItem.pause();
+            
+            this._buffer.percentage         = 0;
+            this._millisecondsUntilBuffered = -1;
+            this._buffered                  = false;
+            
+            this._framePulse.addEventListener(Event.ENTER_FRAME, this._onFrameFire, false, 0, true);
+            this._calculateLoadProgress();
+        }
+        
+        protected function _createDefinedVideoLoadEvent(type:String):VideoLoadEvent {
+            var vidLoadEvent:VideoLoadEvent        = new VideoLoadEvent(type);
+            vidLoadEvent.attempts                  = this.attempts;
+            vidLoadEvent.Bps                       = this.Bps;
+            vidLoadEvent.buffer                    = this.buffer;
+            vidLoadEvent.bytesLoaded               = this.bytesLoaded;
+            vidLoadEvent.bytesTotal                = this.bytesTotal;
+            vidLoadEvent.latency                   = this.latency;
+            vidLoadEvent.millisecondsUntilBuffered = this.millisecondsUntilBuffered;
+            vidLoadEvent.progress                  = this.progress;
+            vidLoadEvent.retries                   = this.retries;
+            vidLoadEvent.time                      = this.time;
+            
+            return vidLoadEvent;
+        }
+        
+        /**
+            @sends VideoInfoEvent#CUE_POINT - Dispatched when a video cue point is reached.
+        */
+        protected function _onCuePoint(infoObject:Object):void {
+            var vidInfoEvent:VideoInfoEvent = new VideoInfoEvent(VideoInfoEvent.CUE_POINT);
+            vidInfoEvent.infoObject         = infoObject;
+            
+            this.dispatchEvent(vidInfoEvent);
+        }
+        
+        /**
+            @sends VideoInfoEvent#META_DATA - Dispatched when video meta data is received.
+        */
+        protected function _onMetaData(infoObject:Object):void {
+            if (this.duration == -1)
+                this.duration = infoObject.duration;
+            
+            var vidInfoEvent:VideoInfoEvent = new VideoInfoEvent(VideoInfoEvent.META_DATA);
+            vidInfoEvent.infoObject         = infoObject;
+            
+            this._metaData = infoObject;
+            
+            this.dispatchEvent(vidInfoEvent);
+        }
+        
+        /**
+            @sends NetStatusEvent#NET_STATUS - Dispatched when a NetStream object has reporting its status.
+        */
+        protected function _netStatus(e:NetStatusEvent):void {
+            if (!this._isOpen) {
+                this._isOpen = true;
+                this._onOpen(new Event(Event.OPEN));
+            }
+            
+            if (e.info.level == 'error' &amp;&amp; !this.loaded)
+                this._onLoadError(e);
+            else
+                this.dispatchEvent(e);
+        }
+        
+        protected function _onFrameFire(e:Event):void {
+            this._calculateLoadProgress();
+        }
+    }
+}
+</textarea></div></div></div><div class="classDescription"><span class="descriptionSummary">Provides an easy and standardized way to load video files.</span> VideoLoad also includes <a class="className" href="org_casalib_events_VideoLoadEvent.html">buffer progress information</a> in the progress event.<div class="classFields"><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Example:</span><div class="item"><ul><li> <pre>
+package {
+    <span class="codeKeyword">import</span> org.casalib.display.CasaMovieClip;
+    <span class="codeKeyword">import</span> org.casalib.events.VideoLoadEvent;
+    <span class="codeKeyword">import</span> org.casalib<span class="codeIdentifier">.load</span>.VideoLoad;
+
+
+    <span class="codeKeyword">public</span> <span class="codeKeyword">class</span> MyExample <span class="codeKeyword">extends</span> CasaMovieClip {
+        protected <span class="codeKeyword">var</span> _videoLoad:VideoLoad;
+
+
+        <span class="codeKeyword">public</span> <span class="codeKeyword">function</span> MyExample() {
+            <span class="codeIdentifier">super</span>();
+
+            <span class="codeIdentifier">this</span>._videoLoad = <span class="codeKeyword">new</span> VideoLoad(<span class="codeString">"test.flv"</span>);
+            <span class="codeIdentifier">this</span>._videoLoad.pauseStart = <span class="codeIdentifier">true</span>;
+            <span class="codeIdentifier">this</span>._videoLoad.addEventListener(VideoLoadEvent.PROGRESS, <span class="codeIdentifier">this</span>._onProgress);
+            <span class="codeIdentifier">this</span>._videoLoad.addEventListener(VideoLoadEvent.BUFFERED, <span class="codeIdentifier">this</span>._onBuffered);
+            <span class="codeIdentifier">this</span>._videoLoad<span class="codeIdentifier">.start</span>();
+
+            <span class="codeIdentifier">this</span>.addChild(<span class="codeIdentifier">this</span>._videoLoad.video);
+        }
+
+        protected <span class="codeKeyword">function</span> _onProgress(e:VideoLoadEvent):<span class="codeKeyword">void</span> {
+            <span class="codeIdentifier">trace</span>(e.millisecondsUntilBuffered + <span class="codeString">" milliseconds until buffered"</span>);
+            <span class="codeIdentifier">trace</span>(e.buffer.percentage + <span class="codeString">"% buffered"</span>);
+            <span class="codeIdentifier">trace</span>(e.progress.percentage + <span class="codeString">"% loaded"</span>);
+        }
+
+        protected <span class="codeKeyword">function</span> _onBuffered(e:VideoLoadEvent):<span class="codeKeyword">void</span> {
+            e<span class="codeIdentifier">.target</span>.netStream.resume();
+        }
+    }
+}</pre> </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Events broadcasted to listeners:</span><div class="item"><ul><li>AsyncErrorEvent with type: <code>ASYNC_ERROR</code>  - Dispatched when an exception is thrown asynchronously.</li><li>SecurityErrorEvent with type: <code>SECURITY_ERROR</code>  - Dispatched if load is outside the security sandbox.</li><li><a href="org_casalib_events_VideoLoadEvent.html#PROGRESS">VideoLoadEvent</a> with type: <code>PROGRESS</code>  - Dispatched as video is received during the download process.</li><li><a href="org_casalib_events_VideoLoadEvent.html#BUFFERED">VideoLoadEvent</a> with type: <code>BUFFERED</code>  - Dispatched when video is buffered.</li><li><a href="org_casalib_events_VideoInfoEvent.html#CUE_POINT">VideoInfoEvent</a> with type: <code>CUE_POINT</code>  - Dispatched when a video cue point is reached.</li><li><a href="org_casalib_events_VideoInfoEvent.html#META_DATA">VideoInfoEvent</a> with type: <code>META_DATA</code>  - Dispatched when video meta data is received.</li><li>NetStatusEvent with type: <code>NET_STATUS</code>  - Dispatched when a NetStream object has reporting its status.</li></ul></div></div></div></div></div></div><div class="summary"><h2 id="Summary">Summary</h2><div class="docNav"><ul><li><div id="twistyTypeInfo_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide type info</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_on");</script><div id="twistyTypeInfo_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show type info</a></div><span id="twistyTypeInfo_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleTypeInfo_off");</script></li><li><div id="twistySummaries_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Hide summaries</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_on");</script><div id="twistySummaries_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Show summaries</a></div><span id="twistySummaries_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSummaries_off");</script></li><li><div id="twistySort_show" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">&times;</span>Sort by source order</a></div><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_on");</script><div id="twistySort_hide" class="twistyTrigger twikiUnvisited twikiMakeVisible twistyInited twistyRememberSetting"><a href="#"><span class="icon">+</span>Sort alphabetically</a></div><span id="twistySort_toggle" class="twistyContent"><!----></span><script type="text/javascript">twiki.JQueryTwistyPlugin.initId("toggleSort_off");</script></li></ul><br class="clear" /></div><div class="memberList"><div class="memberSummaryPart"><span class="title">Constructor</span><ul class="sortable" id="sortul1"><li class="sortli listnum1"><a href="#VideoLoad">VideoLoad</a><span class="typeInfo"> (request:*, completeWhenBuffered:Boolean = false)</span><ul class="summary"><li>Creates a new VideoLoad.</li></ul></li></ul></div><div class="memberSummaryPart"><span class="title">Class properties</span><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Class properties inherited from <span class="superclass"><a class="className" href="org_casalib_process_Process.html">Process</a></span></span><div class="item inheritedList"><a href="org_casalib_process_Process.html#NORM_PRIORITY">NORM_PRIORITY</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance properties</span><ul class="sortable" id="sortul3"><li class="sortli listnum1"><a href="#duration">duration</a><span class="typeInfo">  : Number</span><ul class="summary"><li>The duration/length of the video.</li></ul></li><li class="sortli listnum2"><a href="#pauseStart">pauseStart</a><span class="typeInfo">  : Boolean</span><ul class="summary"><li>Indicates to pause video at start <span class="codeIdentifier">true</span>, or to let the video automatically play <span class="codeIdentifier">false</span>; defaults to <span class="codeIdentifier">false</span>.</li></ul></li><li class="sortli listnum3"><a href="#video">video</a><span class="typeInfo">  : Video</span><ul class="summary"><li>A Video class with attached NetStream.</li></ul></li><li class="sortli listnum4"><a href="#netConnection">netConnection</a><span class="typeInfo">  : NetConnection</span><ul class="summary"><li>The NetConnection class used by the VideoLoad class.</li></ul></li><li class="sortli listnum5"><a href="#netStream">netStream</a><span class="typeInfo">  : NetStream</span><ul class="summary"><li>The NetStream class used by the VideoLoad class.</li></ul></li><li class="sortli listnum6"><a href="#millisecondsUntilBuffered">millisecondsUntilBuffered</a><span class="typeInfo">  : int</span><ul class="summary"><li>The time remaining in milliseconds until the video has completely buffered.</li></ul></li><li class="sortli listnum7"><a href="#buffer">buffer</a><span class="typeInfo">  : <a class="className" href="org_casalib_math_Percent.html">Percent</a></span><ul class="summary"><li>The percent the video has buffered.</li></ul></li><li class="sortli listnum8"><a href="#buffered">buffered</a><span class="typeInfo">  : Boolean</span><ul class="summary"><li>Determines if the requested video has buffered <span class="codeIdentifier">true</span>, or hasn't finished buffering <span class="codeIdentifier">false</span>.</li></ul></li><li class="sortli listnum9"><a href="#metaData">metaData</a><span class="typeInfo">  : Object</span><ul class="summary"><li>The meta data information embedded in the video being loaded.</li></ul></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_load_LoadItem.html">LoadItem</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_load_LoadItem.html#_attempts">_attempts</a>  <a class="private" href="org_casalib_load_LoadItem.html#_Bps">_Bps</a>  <a class="private" href="org_casalib_load_LoadItem.html#_dispatcher">_dispatcher</a>  <a class="private" href="org_casalib_load_LoadItem.html#_httpStatus">_httpStatus</a>  <a class="private" href="org_casalib_load_LoadItem.html#_latency">_latency</a>  <a class="private" href="org_casalib_load_LoadItem.html#_loaded">_loaded</a>  <a class="private" href="org_casalib_load_LoadItem.html#_loadItem">_loadItem</a>  <a class="private" href="org_casalib_load_LoadItem.html#_preventCache">_preventCache</a>  <a class="private" href="org_casalib_load_LoadItem.html#_progress">_progress</a>  <a class="private" href="org_casalib_load_LoadItem.html#_request">_request</a>  <a class="private" href="org_casalib_load_LoadItem.html#_retries">_retries</a>  <a class="private" href="org_casalib_load_LoadItem.html#_startTime">_startTime</a>  <a class="private" href="org_casalib_load_LoadItem.html#_time">_time</a>  <a href="org_casalib_load_LoadItem.html#attempts">attempts</a>  <a href="org_casalib_load_LoadItem.html#Bps">Bps</a>  <a href="org_casalib_load_LoadItem.html#bytesLoaded">bytesLoaded</a>  <a href="org_casalib_load_LoadItem.html#bytesTotal">bytesTotal</a>  <a href="org_casalib_load_LoadItem.html#httpStatus">httpStatus</a>  <a href="org_casalib_load_LoadItem.html#latency">latency</a>  <a href="org_casalib_load_LoadItem.html#loaded">loaded</a>  <a href="org_casalib_load_LoadItem.html#loading">loading</a>  <a href="org_casalib_load_LoadItem.html#preventCache">preventCache</a>  <a href="org_casalib_load_LoadItem.html#progress">progress</a>  <a href="org_casalib_load_LoadItem.html#retries">retries</a>  <a href="org_casalib_load_LoadItem.html#time">time</a>  <a href="org_casalib_load_LoadItem.html#url">url</a>  <a href="org_casalib_load_LoadItem.html#urlRequest">urlRequest</a></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_process_Process.html">Process</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_process_Process.html#_hasCompleted">_hasCompleted</a>  <a class="private" href="org_casalib_process_Process.html#_isRunning">_isRunning</a>  <a class="private" href="org_casalib_process_Process.html#_priority">_priority</a>  <a href="org_casalib_process_Process.html#completed">completed</a>  <a href="org_casalib_process_Process.html#priority">priority</a>  <a href="org_casalib_process_Process.html#running">running</a></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Instance properties inherited from <span class="superclass"><a class="className" href="org_casalib_events_RemovableEventDispatcher.html">RemovableEventDispatcher</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_events_RemovableEventDispatcher.html#_isDestroyed">_isDestroyed</a>  <a class="private" href="org_casalib_events_RemovableEventDispatcher.html#_listenerManager">_listenerManager</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#destroyed">destroyed</a></div></div></div></div></div><div class="memberSummaryPart"><span class="title">Instance methods</span><ul class="sortable" id="sortul4"><li class="sortli listnum1"><a href="#destroy">destroy</a><span class="typeInfo">  : void</span></li></ul><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_load_LoadItem.html">LoadItem</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_load_LoadItem.html#_calculateLoadProgress">_calculateLoadProgress</a>  <a class="private" href="org_casalib_load_LoadItem.html#_complete">_complete</a>  <a class="private" href="org_casalib_load_LoadItem.html#_createDefinedLoadEvent">_createDefinedLoadEvent</a>  <a class="private" href="org_casalib_load_LoadItem.html#_createRequest">_createRequest</a>  <a class="private" href="org_casalib_load_LoadItem.html#_initListeners">_initListeners</a>  <a class="private" href="org_casalib_load_LoadItem.html#_load">_load</a>  <a class="private" href="org_casalib_load_LoadItem.html#_onComplete">_onComplete</a>  <a class="private" href="org_casalib_load_LoadItem.html#_onHttpStatus">_onHttpStatus</a>  <a class="private" href="org_casalib_load_LoadItem.html#_onLoadError">_onLoadError</a>  <a class="private" href="org_casalib_load_LoadItem.html#_onOpen">_onOpen</a>  <a class="private" href="org_casalib_load_LoadItem.html#_onProgress">_onProgress</a>  <a href="org_casalib_load_LoadItem.html#destroy">destroy</a>  <a href="org_casalib_load_LoadItem.html#start">start</a>  <a href="org_casalib_load_LoadItem.html#stop">stop</a></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_process_Process.html">Process</a></span></span><div class="item inheritedList"><a class="private" href="org_casalib_process_Process.html#_complete">_complete</a>  <a href="org_casalib_process_Process.html#destroy">destroy</a>  <a href="org_casalib_process_Process.html#start">start</a>  <a href="org_casalib_process_Process.html#stop">stop</a></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Instance methods inherited from <span class="superclass"><a class="className" href="org_casalib_events_RemovableEventDispatcher.html">RemovableEventDispatcher</a></span></span><div class="item inheritedList"><a href="org_casalib_events_RemovableEventDispatcher.html#addEventListener">addEventListener</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#destroy">destroy</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#dispatchEvent">dispatchEvent</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#removeEventListener">removeEventListener</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#removeEventListeners">removeEventListeners</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#removeEventsForListener">removeEventsForListener</a>  <a href="org_casalib_events_RemovableEventDispatcher.html#removeEventsForType">removeEventsForType</a></div></div></div></div></div></div></div><div class="memberSection"><h2 id="Constructor">Constructor</h2><div class="member" id="VideoLoad"><h3>VideoLoad</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> function <b>VideoLoad</b> (
+
+</div><div class="code">request:*,
+completeWhenBuffered:Boolean = false)</div><br class="clear" /></div></div><div class="description"> Creates a new VideoLoad. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Parameters:</span><div class="item"><div class="floatbox code colorizedCode">request             <span class="itemSeparator">:</span></div><div>A <code><span class="codeIdentifier">String</span></code> or an <code>URLRequest</code> reference to the video you wish to load.</div></div><div class="item"><div class="floatbox code colorizedCode">completeWhenBuffered<span class="itemSeparator">:</span></div><div>If the load should be considered complete when buffered <code><span class="codeIdentifier">true</span></code>, or when the video has completely loaded <code><span class="codeIdentifier">false</span></code>; defaults to <code><span class="codeIdentifier">false</span></code>.</div></div></div></div></div></div></div><div class="memberSection"><h2 id="Instanceproperties">Instance properties</h2><div class="member" id="buffer"><h3>buffer</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>buffer</b>:<a class="className" href="org_casalib_math_Percent.html">Percent</a>
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The percent the video has buffered. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Usage note:</span><div class="item"><ul><li> <a class="className" href="org_casalib_load_VideoLoad.html">VideoLoad</a> will report <code><span class="codeNumber">0</span></code> percent until two seconds of load time has elapsed. </li></ul></div></div></div></div></div><div class="member" id="buffered"><h3>buffered</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>buffered</b>:Boolean
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> Determines if the requested video has buffered <code><span class="codeIdentifier">true</span></code>, or hasn't finished buffering <code><span class="codeIdentifier">false</span></code>. </div></div><div class="member" id="duration"><h3>duration</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>duration</b>:Number
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> The duration/length of the video. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Usage note:</span><div class="item"><ul><li> Setting this value will override the length (provided by the video metadata) that is used to calculate buffer. </li></ul></div></div></div></div></div><div class="member" id="metaData"><h3>metaData</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>metaData</b>:Object
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The meta data information embedded in the video being loaded. </div></div><div class="member" id="millisecondsUntilBuffered"><h3>millisecondsUntilBuffered</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>millisecondsUntilBuffered</b>:int
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The time remaining in milliseconds until the video has completely buffered. </div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Usage note:</span><div class="item"><ul><li> <a class="className" href="org_casalib_load_VideoLoad.html">VideoLoad</a> will report <code>-<span class="codeNumber">1</span></code> milliseconds until two seconds of load time has elapsed. </li></ul></div></div></div></div></div><div class="member" id="netConnection"><h3>netConnection</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>netConnection</b>:NetConnection
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The NetConnection class used by the VideoLoad class. </div></div><div class="member" id="netStream"><h3>netStream</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>netStream</b>:NetStream
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> The NetStream class used by the VideoLoad class. </div></div><div class="member" id="pauseStart"><h3>pauseStart</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>pauseStart</b>:Boolean
+</div><div class="floatbox"><span class="access">(read,write)</span></div><br class="clear" /></div></div><div class="description"> Indicates to pause video at start <code><span class="codeIdentifier">true</span></code>, or to let the video automatically play <code><span class="codeIdentifier">false</span></code>; defaults to <code><span class="codeIdentifier">false</span></code>. </div></div><div class="member" id="video"><h3>video</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">public</span> <b>video</b>:Video
+</div><div class="floatbox"><span class="access">(read)</span></div><br class="clear" /></div></div><div class="description"> A Video class with attached NetStream. </div></div></div><div class="memberSection"><h2 id="Instancemethods">Instance methods</h2><div class="member" id="destroy"><h3>destroy</h3><div class="fullMemberString"><div class="floatholder"><div class="floatbox code"><span class="memberAccess">override public</span> function <b>destroy</b> (
+</div><div class="code">) : void</div><br class="clear" /></div></div><div class="boxWithBorder"><div class="boxedElem"><div class="contentHolder"><span class="title">Usage note:</span><div class="item"><ul><li> <code>destroy</code> does not close the internal NetStream object. To completely destroy a VideoLoad you have to close the NetStream object:<br />        <pre>
+<span class="codeIdentifier">this</span>._videoLoad.netStream<span class="codeIdentifier">.close</span>();
+<span class="codeIdentifier">this</span>._videoLoad.destroy();</pre> </li></ul></div></div></div><div class="boxedElem"><div class="contentHolder"><span class="title">Overrides:</span><div class="item"><ul><li> <a href="org_casalib_load_LoadItem.html#destroy">LoadItem.destroy</a> </li></ul></div></div></div></div></div></div><div class="footer"><ul class="docFooter"><li class="copyright">&copy; 2009 Aaron Clinger and the CASA Lib Team</li><li class="createdWith">Created with <a href="http://visiblearea.com/visdoc/">VisDoc</a></li></ul></div></div></div></body></html>

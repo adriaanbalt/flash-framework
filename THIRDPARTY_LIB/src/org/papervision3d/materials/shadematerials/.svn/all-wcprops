@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/shadematerials
+END
+GouraudMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/shadematerials/GouraudMaterial.as
+END
+PhongMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/shadematerials/PhongMaterial.as
+END
+FlatShadeMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/shadematerials/FlatShadeMaterial.as
+END
+EnvMapMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/shadematerials/EnvMapMaterial.as
+END
+CellMaterial.as
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/_interactive/!svn/ver/48/thirdparty/as3/trunk/src/org/papervision3d/materials/shadematerials/CellMaterial.as
+END

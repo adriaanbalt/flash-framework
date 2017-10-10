@@ -1,0 +1,52 @@
+8
+
+dir
+261
+https://svn.wunderman-review.com/svn/_interactive/thirdparty/as3/trunk/src/org/casalib/math/geom
+https://svn.wunderman-review.com/svn/_interactive
+
+
+
+2009-12-05T07:35:06.868705Z
+73
+smitht
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b6b4794c-6378-bb41-bb06-88728c6e73ad
+
+Ellipse.as
+file
+
+
+
+
+2010-03-08T18:14:16.000000Z
+4c729f2d3ff54ae9e3b09af392b0d2bc
+2009-12-05T07:35:06.868705Z
+73
+smitht
+
+Point3d.as
+file
+
+
+
+
+2010-03-08T18:14:16.000000Z
+951c23cc5755d8b5e722c4e4f1e0897f
+2009-12-05T07:35:06.868705Z
+73
+smitht
+
